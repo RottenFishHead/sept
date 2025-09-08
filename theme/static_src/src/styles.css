@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+@source "../../../**/*.{html,py,js}";
+
+@theme {
+    --color-primary: #5d8eb9;
+    --color-secondary: #4a5568;
+    --color-accent: #f6e05e;
+    --color-background: #f7fafc;
+    --color-surface: #ffffff;
+    --color-error: #e53e3e;
+    --color-on-primary: #ffffff;
+    --color-on-secondary: #ffffff;
+    --color-on-accent: #000000;
+    --color-on-background: #000000;
+    --color-on-surface: #000000;
+    --color-on-error: #ffffff;
+}

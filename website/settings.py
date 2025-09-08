@@ -1,3 +1,5 @@
+# Explicitly set the npm path for Django Tailwind
+TAILWIND_NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +22,19 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "core.apps.CoreConfig",
+    # "articles.apps.ArticlesConfig",
+    # "products.apps.ProductsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'django.contrib.humanize',
+    "tailwind",
+    "theme",
+    "django_browser_reload",
+
 ]
 
 MIDDLEWARE = [
@@ -36,6 +45,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = "website.urls"
@@ -111,3 +121,12 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+
+# Tailwind CSS Configuration
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = ['127.0.0.1']
+
+NODE_PATH = "node"
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
+
