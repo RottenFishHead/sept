@@ -16,3 +16,17 @@
     --color-on-surface: #000000;
     --color-on-error: #ffffff;
 }
+@layer base {
+  h2 {
+    @apply text-cyan-700 font-bold text-center text-2xl mb-2;
+  }
+  h3 {
+    @apply text-gray-700 italic text-center text-lg mb-4;
+  }
+  p {
+    @apply text-gray-500;
+  }
+  .btn {
+    @apply text-amber-700 dark:text-indigo-400;
+  }
+}
