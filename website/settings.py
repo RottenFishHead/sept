@@ -1,6 +1,5 @@
-# Explicitly set the npm path for Django Tailwind
-TAILWIND_NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,8 +21,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     "core.apps.CoreConfig",
-    # "articles.apps.ArticlesConfig",
-    # "products.apps.ProductsConfig",
+    "articles.apps.ArticlesConfig",
+    "products.apps.ProductsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -34,6 +33,7 @@ INSTALLED_APPS = [
     "tailwind",
     "theme",
     "django_browser_reload",
+    "widget_tweaks",
 
 ]
 
@@ -117,6 +117,9 @@ STATIC_URL = "static/"
 
 STATICFILES_DIRS = [BASE_DIR / "static"]
 
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -129,4 +132,5 @@ INTERNAL_IPS = ['127.0.0.1']
 
 NODE_PATH = "node"
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
-
+# Explicitly set the npm path for Django Tailwind
+TAILWIND_NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"

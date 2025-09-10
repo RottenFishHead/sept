@@ -1,0 +1,34 @@
+{% extends "components/base.html" %}
+{% load static %}
+{% block content %}
+<div class="mx-auto max-w-4xl px-4 py-10">
+  <div class="flex items-center justify-between mb-6">
+    <h1 class="text-3xl font-bold">{{ article.title }}</h1>
+    <div class="flex gap-2">
+      <a href="{% url 'articles:edit' article.slug %}" class="rounded-md bg-amber-700 px-3 py-2 text-white">Edit</a>
+      <form method="post" action="{% url 'articles:delete' article.slug %}" onsubmit="return confirm('Delete this article?');">
+        {% csrf_token %}
+        <button type="submit" class="rounded-md bg-red-600 px-3 py-2 text-white">Delete</button>
+      </form>
+    </div>
+  </div>
+
+  {% if article.images.all %}
+  <div class="mb-6 grid gap-4 sm:grid-cols-2">
+    {% for img in article.images.all %}
+      <figure class="overflow-hidden rounded-lg ring-1 ring-black/5 dark:ring-white/10">
+        <img src="{{ img.image.url }}" alt="{{ img.caption }}" class="w-full h-64 object-cover">
+        {% if img.caption %}
+        <figcaption class="px-3 py-2 text-sm text-gray-700 dark:text-gray-300">{{ img.caption }}</figcaption>
+        {% endif %}
+      </figure>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if article.excerpt %}
+    <p class="text-lg text-gray-700 dark:text-gray-300 mb-4">{{ article.excerpt }}</p>
+  {% endif %}
+  <div class="prose dark:prose-invert max-w-none">{{ article.body|linebreaks }}</div>
+</div>
+{% endblock %}

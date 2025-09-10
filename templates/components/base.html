@@ -6,6 +6,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% block meta %}
+        <title>
+          {% if meta_title %}{{ meta_title }}{% else %}{% block title %}{{ block.super|default:"" }}{% endblock %}{% endif %}
+        </title>
+        {% if meta_description %}
+          <meta name="description" content="{{ meta_description }}">
+        {% endif %}
+        {% if meta_keywords %}
+          <meta name="keywords" content="{{ meta_keywords }}">
+        {% endif %}
+        {% if meta_canonical %}
+          <link rel="canonical" href="{{ meta_canonical }}">
+        {% endif %}
+         <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  {% if meta_title %}<meta property="og:title" content="{{ meta_title }}">{% endif %}
+  {% if meta_description %}<meta property="og:description" content="{{ meta_description }}">{% endif %}
+  {% if meta_og_image %}
+    <meta property="og:image" content="{{ meta_og_image.url }}">
+  {% endif %}
+
+  {% endblock %}
+
     {% tailwind_css %}
 </head>
 

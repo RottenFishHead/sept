@@ -1,0 +1,77 @@
+{% extends "components/base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+<div class="mx-auto max-w-3xl px-4 py-10">
+  <h1 class="text-2xl font-bold mb-6">
+    {% if mode == "create" %}Create Article{% else %}Edit: {{ article.title }}{% endif %}
+  </h1>
+
+  <form method="post" enctype="multipart/form-data" class="space-y-8">
+    {% csrf_token %}
+    <div class="rounded-xl bg-white p-6 ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10">
+      {{ form.non_field_errors }}
+      <div class="grid gap-4">
+        <label class="block">
+          <span class="text-sm font-medium">Title</span>
+          {{ form.title|add_class:"mt-1 w-full rounded-md border-gray-300" }}
+        </label>
+        <label class="block">
+          <span class="text-sm font-medium">Excerpt (optional)</span>
+          {{ form.excerpt|add_class:"mt-1 w-full rounded-md border-gray-300" }}
+        </label>
+        <label class="block">
+          <span class="text-sm font-medium">Body</span>
+          {{ form.body|add_class:"mt-1 w-full rounded-md border-gray-300 h-48" }}
+        </label>
+        <label class="inline-flex items-center gap-2">
+          {{ form.published }} <span>Published</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="rounded-xl bg-white p-6 ring-1 ring-black/5 dark:bg-gray-900 dark:ring-white/10">
+      <div class="mb-4 flex items-center justify-between">
+        <h2 class="text-lg font-semibold">Images</h2>
+        <button type="button" id="add-form" class="rounded-md bg-[var(--color-primary)] px-3 py-1.5 text-white">Add another</button>
+      </div>
+
+      {{ formset.management_form }}
+      <div id="formset-rows" class="space-y-6">
+        {% for f in formset %}
+          {% include "articles/_image_formset_row.html" with f=f %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <button class="rounded-md bg-amber-700 px-4 py-2 text-white" type="submit">
+        Save
+      </button>
+      <a href="{% url 'articles:list' %}" class="text-gray-600">Cancel</a>
+    </div>
+  </form>
+</div>
+
+<script>
+  // Minimal “Add another” behavior that clones the empty form template:
+  (function(){
+    const addBtn = document.getElementById('add-form');
+    const totalEl = document.getElementById('{{ formset.prefix }}-TOTAL_FORMS');
+    const rows = document.getElementById('formset-rows');
+
+    addBtn?.addEventListener('click', () => {
+      const total = parseInt(totalEl.value, 10);
+      const emptyHtml = `{{ formset.empty_form.as_p|escapejs }}`; // safe-ish for quick use
+      const wrapper = document.createElement('div');
+      wrapper.className = "rounded-lg ring-1 ring-black/5 p-4 dark:ring-white/10";
+      // Replace __prefix__ with new index
+      wrapper.innerHTML = emptyHtml.replaceAll('__prefix__', total);
+      rows.appendChild(wrapper);
+      totalEl.value = total + 1;
+    });
+  })();
+</script>
+{% endblock %}

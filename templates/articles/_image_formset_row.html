@@ -1,0 +1,25 @@
+<div class="rounded-lg ring-1 ring-black/5 p-4 dark:ring-white/10">
+  {% if f.instance.pk and f.instance.image %}
+    <div class="mb-3">
+      <img src="{{ f.instance.image.url }}" alt="{{ f.instance.caption }}" class="h-32 w-32 object-cover rounded">
+    </div>
+  {% endif %}
+  <div class="grid gap-3 sm:grid-cols-3">
+    <div class="sm:col-span-2">
+      <label class="block text-sm font-medium">Image</label>
+      {{ f.image }}
+    </div>
+    <div>
+      <label class="block text-sm font-medium">Order</label>
+      {{ f.order }}
+    </div>
+  </div>
+  <label class="block mt-3 text-sm font-medium">Caption</label>
+  {{ f.caption }}
+  {% if f.DELETE %}
+  <label class="mt-3 inline-flex items-center gap-2">
+    {{ f.DELETE }} <span>Delete</span>
+  </label>
+  {% endif %}
+  {{ f.id }} <!-- keep the hidden id field if present -->
+</div>
