@@ -2,6 +2,8 @@ from django.conf import settings
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
+from django_ckeditor_5.fields import CKEditor5Field
+
 
 class Article(models.Model):
     title = models.CharField(max_length=200)
@@ -10,7 +12,7 @@ class Article(models.Model):
         settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, blank=True
     )
     excerpt = models.TextField(blank=True)
-    body = models.TextField()
+    body = CKEditor5Field()
     published = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

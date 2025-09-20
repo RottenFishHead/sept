@@ -2,372 +2,209 @@
 {% load static %}
 
 {% block content %} 
-<!-- component -->
-<div class="relative isolate overflow-hidden mb-14 bg-black dark:bg-gray-900 max-h-[600px] flex items-center">
-  
-  <!-- Background Video -->
-  <video autoplay muted loop playsinline 
-         class="absolute inset-0 -z-10 w-full h-full object-cover">
-    <source src="{% static 'vid/Video.mp4' %}" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
 
-  <!-- Optional video overlay for readability -->
-  <div class="absolute inset-0 -z-10 bg-black/40"></div>
 
-  <!-- Existing decorative SVGs (optional to keep) -->
-  <svg aria-hidden="true" 
-       class="absolute inset-0 -z-10 w-full h-full opacity-20 stroke-gray-200 dark:stroke-white/10">
-    <defs>
-      <pattern id="983e3e4c-de6d-4c3f-8d64-b9761d1534cc" width="200" height="200" patternUnits="userSpaceOnUse">
-        <path d="M.5 200V.5H200" fill="none" />
-      </pattern>
-    </defs>
-    <rect width="100%" height="100%" fill="url(#983e3e4c-de6d-4c3f-8d64-b9761d1534cc)" stroke-width="0" />
-  </svg>
+<!-- Hero Section -->
+<section class="relative h-[650px] flex items-center justify-center text-center overflow-hidden">
+  <!-- Background Image -->
+  <img src="{% static 'img/raveon-bg.jpg' %}" 
+       alt="Background" 
+       class="absolute inset-0 w-full h-full object-cover" id="parallax-bg" />
+  <!-- Dark Overlay -->
+  <div class="absolute inset-0 bg-primary/60"></div>
 
-  <!-- Content Wrapper -->
-  <div class="relative z-10 mx-auto max-w-7xl px-6 py-10 lg:flex lg:px-8 items-center h-full">
-    <div class="mx-auto max-w-2xl shrink-0 lg:mx-0">
-      <div class="mt-12 sm:mt-20 lg:mt-10">
-        <a href="#" class="inline-flex space-x-6">
-          <span class="rounded-full bg-indigo-50 px-3 py-1 text-sm/6 font-semibold text-indigo-600 ring-1 ring-indigo-600/20 dark:bg-indigo-500/10 dark:text-indigo-400 dark:ring-indigo-500/25">
-            What's new
-          </span>
-          <span class="inline-flex items-center space-x-2 text-sm/6 font-medium text-gray-200">
-            <span>Just shipped v1.0</span>
-            <svg viewBox="0 0 20 20" fill="currentColor" class="size-5 text-gray-300">
-              <path fill-rule="evenodd" clip-rule="evenodd" 
-                    d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" />
-            </svg>
-          </span>
-        </a>
-      </div>
-
-      <h1 class="mt-8 text-5xl font-semibold tracking-tight text-pretty text-white sm:text-7xl">
-        Data Radio Communications Solutions
-      </h1>
-      <p class="mt-6 text-lg font-medium text-pretty text-gray-200 sm:text-xl/8">
-        Long Range UHF and VHF Data Radio Modems, GPS Vehicle & Asset Tracking, Remote Weather Monitoring, SCADA RTU, License Free Data Radios, Custom Wireless Designs, and more.
-      </p>
-
-      <div class="mt-8 flex items-center gap-x-6">
-        <a href="#" class="rounded-md mb-10 bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500">
-          Get started
-        </a>
-        <a href="#" class="text-sm/6 font-semibold text-white mb-10">Learn more →</a>
-      </div>
-    </div>
-
-    <!-- Right Image -->
-    <div class="mx-auto mt-10 flex max-w-2xl sm:mt-16 lg:mt-0 lg:ml-10 lg:max-w-none lg:flex-none">
-      <div class="max-w-3xl flex-none">
-        <img src="{% static 'img/long-range-vhs-uhf.jpg' %}" 
-             alt="App screenshot" class="rounded-md shadow-xl ring-1 ring-gray-900/10 max-h-[500px] object-contain dark:hidden" />
-        <img src="{% static 'img/long-range-vhs-uhf.jpg' %}" 
-             alt="App screenshot" class="rounded-md shadow-2xl ring-1 ring-white/10 max-h-[500px] object-contain not-dark:hidden" />
-      </div>
+  <!-- Hero Content -->
+  <div class="relative z-10 max-w-3xl px-6">
+    <h1 class="text-4xl md:text-6xl font-extrabold text-white drop-shadow-lg">
+      Advanced Technology Solutions
+    </h1>
+    <p class="mt-4 text-lg md:text-xl text-on-background">
+      Delivering reliable communications and software systems for industry, defense, and enterprise.
+    </p>
+    <div class="mt-8 flex justify-center space-x-4">
+      <a href="#"
+         class="bg-button text-black font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-accent">
+         Get Started
+      </a>
+      <a href="#"
+         class="border border-button text-white font-semibold px-6 py-3 rounded-lg hover:bg-accent hover:text-white">
+         Learn More
+      </a>
     </div>
   </div>
-</div>
+</section>
 
-  <!-- CARDS SECTION (aligned with navbar gutters) -->
-  <section class="bg-cyan-custom">
-    <div class="mx-auto max-w-screen-2xl px-3 sm:px-4 lg:px-4 py-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- About Section -->
+<section class="bg-white py-20">
+  
+  <div class="max-w-6xl mx-auto px-6 text-center">
+    <h2 class="text-3xl font-bold text-gray-900 mb-4">Who We Are</h2>
+    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+      We are a team of engineers and innovators building cutting-edge solutions that empower industries and enterprises worldwide.
+    </p>
+  </div>
+  <div class="w-full max-w-3xl mx-auto">
+  <!-- Video preview container -->
+  <div class="relative aspect-video rounded-lg overflow-hidden shadow-lg mt-12">
+    <!-- Thumbnail / background image -->
+    <img src="https://picsum.photos/800/450" alt="Video preview" class="w-full h-full object-cover">
 
-      <!-- Card 1 -->
-      <div class="card rounded-xl border-2 border-[var(--color-primary)]">
-        <figure class="px-4 pt-4">
-          <img src="{% static 'img/long-range-vhs-uhf.jpg' %}" alt="Card One"
-               class="rounded-xl w-full h-50 object-cover" />
-        </figure>
-        <div class="card-body items-center text-left p-12">
-          <h2 class="card-title text-cyan-700 font-bold text-center">Long Range UHF and VHF Data Radio Modems</h2>
-          <h3>High Performance RF</h3>
-          <p class="text-gray-500">Raveon’s industrial long-range UHF and VHF data radio modems are outstanding telemetry, meter reading, SCADA, 
-            OEM and embedded wireless data radio modems. With the most features of any radio modem, they are easily configured to 
-            fulfill your wireless data communication needs. Raveon’s data radio modems exceed all FCC part 22 and 90 requirements. 
-            They features: 1/2-5 watts of RF output in the UHF…  220MHz data modems are available.</p>
-          <div class="card-actions">
-            <button class="btn text-amber-700 dark:text-indigo-400">Learn More...</button>
-          </div>
-        </div>
-      </div>
+    <!-- Dark overlay -->
+    <div class="absolute inset-0 bg-black/40"></div>
 
-      <!-- Card 2 -->
-      <div class="card rounded-xl border-2 border-[var(--color-primary)]">
-        <figure class="px-4 pt-4">
-          <img src="{% static 'img/firefighter-soldier-police.webp' %}" alt="Card Two"
-               class="rounded-xl w-full h-50 object-cover" />
-        </figure>
-        <div class="card-body items-center text-left p-12">
-          <h2 class="card-title text-cyan-700 items-center">Data Radio Solutions</h2>
-          <h3>Long Range, High Performance RF</h3>
-          <p>Raveon’s Tech Series private wireless data modems are ideal for wireless telemetry
-             and wireless SCADA. Are very long-range, secure, and economical. Reliably transporting data 
-             across robust links is made easy with these Data Radio Modems. Whether you are sending straight serial data for
-              Telemetry or using a SCADA protocol, Raveon has a solution for your communication requirements. 
-              The Tech Series GPIO and FIO interfaces can be used as Wireless Remote Terminal Units. 
-              Data rates have 2-Level and 4-Level FM.</p>
-          <div class="card-actions">
-            <button class="btn btn-primary border-none">Learn More...</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="card rounded-xl border-2 border-[var(--color-primary)]">
-        <figure class="px-4 pt-4">
-          <img src="{% static 'img/engineer-young.jpg' %}" alt="Card Three"
-               class="rounded-xl w-full h-50 object-cover" />
-        </figure>
-        <div class="card-body items-center text-left p-12">
-          <h2 class="card-title text-cyan-700 items-center">One Stop Custom Wireless Designs</h2>
-          <h3>Cost Effective, Excellent Quality</h3>
-          <p>Raveon has a large library of OEM solutions for wireless modems. If we do not have what you need, we specialize in creating and 
-            producing custom wireless solutions, network connectivity, and custom wireless IoT Devices. Raveon can create a wireless module 
-            with any type of interface such as USB, Ethernet, RS232 serial, or whatever our OEM partner needs. 
-            Our expertise is in designing and producing what you need.</p>
-          <div class="card-actions">
-            <button class="btn btn-primary border-none">Learn More...</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 4 -->
-      <div class="card rounded-xl border-2 border-[var(--color-primary)]">
-        <figure class="px-4 pt-4">
-          <img src="{% static 'img/gps-asset-tracking.jpg' %}" alt="Card Four"
-               class="rounded-xl w-full h-50 object-cover" />
-        </figure>
-        <div class="card-body items-center text-left p-12">
-          <h2 class="card-title text-cyan-700 items-center">GPS Vehicle & Asset Tracking</h2>
-          <h3>No Recurring Fees, Works Everywhere</h3>
-          <p>Raveon’s RavTrack GPS tracking system is an all-encompassing private GPS tracking system for public 
-            safety Automatic Vehicle Location (AVL), construction equipment, parks and mine equipment, security monitoring, 
-            theft detection, vehicle dispatching, and equipment monitoring. RavTrack is built as a closed-loop GPS tracking ecosystem, meaning every vehicle or asset you place on the network communicates
-             only within your own infrastructure. No reliance on third-party cellular carriers!</p>
-          <div class="card-actions">
-            <button class="btn btn-primary border-none">Learn More...</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 5 -->
-      <div class="card rounded-xl border-2 border-[var(--color-primary)]">
-        <figure class="px-4 pt-4">
-          <img src="{% static 'img/weather-station.jpg' %}" alt="Card Five"
-               class="rounded-xl w-full h-50 object-cover" />
-        </figure>
-        <div class="card-body items-center text-left p-12">
-          <h2 class="card-title text-cyan-700 items-center">Remote Weather Monitoring</h2>
-          <h3>Long Range and Rugged</h3>
-          <p>Raveon’s data radio modems are well-suited for remote weather monitoring. VHF and UHF radios are long-range (5-50 miles) 
-            and very rugged. Operating from -30C to +60C, they have 5 watts of RF output and consume very little power. 
-            Our Smart Radio Modems can communicate with weather sensors without having to add interfaces and signal conditioning.
-            The Remote Autonomous Zone Node SCADA radio has many IO features and Autonomous features to make a system very safe in remote areas.</p>
-          <div class="card-actions">
-            <button class="btn btn-primary border-none">Learn More...</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 6 -->
-      <div class="card rounded-xl border-2 border-[var(--color-primary)]">
-        <figure class="px-4 pt-4">
-          <img src="{% static 'img/data-radio-license-free.jpg' %}" alt="Card Six"
-               class="rounded-xl w-full h-50 object-cover" />
-        </figure>
-        <div class="card-body items-center text-left p-12">
-          <h2 class="card-title text-cyan-700 items-center">License Free Data Radios</h2>
-          <h3>ISM Band 915MHz LoRa Radio</h3>
-          <p>The miniature M50 Daisy Modem can be used as a point connection to get you onto the IoT or onto your own private network.
-            The M50 is for OEM’s and Raveon has many other OEM Radio Modem options.
-            The RF communication range is described here in application note AN205(LoRa). Tech Series enclosures 
-            has a rugged power connector and a Myriad of IO interface options: RS-232, RS485,  RS-422, USB, GPIO, FIO.</p>
-          <div class="card-actions">
-            <button class="btn btn-primary border-none">Learn More...</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 7 -->
-      <div class="card rounded-xl border-2 border-[var(--color-primary)]">
-        <figure class="px-4 pt-4">
-          <img src="{% static 'img/scada-min.png' %}" alt="Card Seven"
-               class="rounded-xl w-full h-50 object-cover" />
-        </figure>
-        <div class="card-body items-center text-left p-12">
-          <h2 class="card-title text-cyan-700 items-center">SCADA RTU</h2>
-          <h3>Remote Autonomous Zone Nodes (RAZN)</h3>
-          <p>Wireless SCADA long-range RTU Remote Terminal Unit created by Raveon to make RTUs long-range, low-cost, and a myriad of Autonomous featured.
-          This RTU does remote IO data acquisition, with a myriad of IO interface options, can monitor the Sensors to Monitor and also control anything. 
-          MODBUS protocol can be used to read and control the IO terminals on the RAZN, as a Modbus RTU.</p>
-          <div class="card-actions">
-            <button class="btn btn-primary border-none">Learn More...</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 8 -->
-      <div class="card rounded-xl border-2 border-[var(--color-primary)]">
-        <figure class="px-4 pt-4">
-          <img src="{% static 'img/weatherproof-data-min.png' %}" alt="Card Eight"
-               class="rounded-xl w-full h-50 object-cover" />
-        </figure>
-        <div class="card-body items-center text-left p-12">
-          <h2 class="card-title text-cyan-700 items-center">Weatherproof Data Radio Modems</h2>
-          <h3>Rugged, Reliable, Long Range in any Weather</h3>
-          <p>Weatherproof data radio modems are indispensable for outdoor GPS applications where reliability, low latency, and environmental resilience cannot be compromised. 
-          Their specialized enclosures, RF performance, and integration features ensure continuous position reporting—empowering operations 
-          in the most demanding settings without dependence on third-party communication networks.</p>
-          <div class="card-actions">
-            <button class="btn btn-primary border-none">Learn More</button>
-          </div>
-        </div>
-      </div>
-    </div> 
-  </section>
-
-<section class="relative isolate overflow-hidden">
-  <!-- Gradient background -->
-  <div class="absolute inset-0 z-0 bg-gradient-to-br from-[var(--color-primary)]/20 via-[var(--color-primary)]/30 to-amber-700/30 dark:from-[var(--color-primary)]/30 dark:via-indigo-900/30 dark:to-amber-700/40"></div>
-
-  <!-- Radial spotlight overlay -->
-  <div class="pointer-events-none absolute inset-0 z-0 [background:radial-gradient(70%_70%_at_50%_40%,rgba(255,255,255,0.4),transparent_80%)] dark:[background:radial-gradient(70%_70%_at_50%_40%,rgba(0,0,0,0.25),transparent_80%)]"></div>
-
-  <!-- Subtle dot pattern overlay -->
-  <div class="absolute inset-0 z-0 opacity-10 bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%224%22 height=%224%22 viewBox=%220 0 4 4%22><circle cx=%222%22 cy=%222%22 r=%221%22 fill=%22%23ffffff%22 /></svg>')]"></div>
-
-  <!-- Content -->
-  <div class="relative z-10 mx-auto max-w-screen-2xl px-3 sm:px-4 lg:px-4 py-12 sm:py-16 pb-20">
-    <!-- Header -->
-    <div class="mb-10 text-center">
-      <span class="inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold bg-amber-700/20 text-amber-800 ring-1 ring-amber-700/40 dark:bg-amber-700/30 dark:text-amber-200 dark:ring-amber-700/50">
-        What we offer
+    <!-- Play button -->
+    <button class="absolute inset-0 flex items-center justify-center group">
+      <span class="w-20 h-20 bg-white/80 rounded-full flex items-center justify-center shadow-lg group-hover:bg-white transition">
+        <svg class="w-10 h-10 text-gray-800 group-hover:text-indigo-600 transition" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M6 4l12 6-12 6V4z"/>
+        </svg>
       </span>
-      <h2 class="mt-4 text-3xl font-bold tracking-tight text-primary dark:text-white">
-        Custom Features, Powerful Benefits
-      </h2>
-      <p class="mt-2 text-gray-700 dark:text-gray-300">
-        Mix and match the capabilities you need—built for reliability and scale.
-      </p>
-    </div>
+    </button>
+  </div>
 
-    <!-- Two-Column Lists -->
-    <div class="grid grid-cols-1 gap-8 md:grid-cols-2">
-      <!-- Left List -->
-      <div class="rounded-2xl bg-white/90 p-6 shadow-md ring-1 ring-black/5 backdrop-blur dark:bg-gray-900/70 dark:ring-white/10">
-        <div class="mb-6 flex items-center gap-3">
-          <span class="inline-flex size-10 items-center justify-center rounded-xl bg-[var(--color-primary)]/15 text-[var(--color-primary)] ring-1 ring-[var(--color-primary)]/40">
-            <svg viewBox="0 0 24 24" fill="none" class="size-5" stroke="currentColor" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12 6 6 9-13.5"/>
-            </svg>
-          </span>
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Features</h3>
-        </div>
-        <ul class="space-y-3">
-          <li class="flex gap-3">
-            <span class="mt-1 size-2.5 rounded-full bg-[var(--color-primary)]"></span>
-            <div>
-              <div class="font-medium text-gray-900 dark:text-white">GPS/GNSS Tracking</div>
-              <p class="text-sm text-gray-600 dark:text-gray-300">Robust connectivity across challenging terrains and conditions.</p>
-            </div>
-          </li>
-          <li class="flex gap-3">
-            <span class="mt-1 size-2.5 rounded-full bg-amber-700"></span>
-            <div>
-              <div class="font-medium text-gray-900 dark:text-white">IO Features</div>
-              <p class="text-sm text-gray-600 dark:text-gray-300">IO options with the ability to customize and add on.</p>
-            </div>
-          </li>
-          <li class="flex gap-3">
-            <span class="mt-1 size-2.5 rounded-full bg-indigo-500"></span>
-            <div>
-              <div class="font-medium text-gray-900 dark:text-white">Remote Terminal Units</div>
-              <p class="text-sm text-gray-600 dark:text-gray-300">RTUs for remote monitoring and control.</p>
-            </div>
-          </li>
-          <li class="flex gap-3">
-            <span class="mt-1 size-2.5 rounded-full bg-emerald-500"></span>
-            <div>
-              <div class="font-medium text-gray-900 dark:text-white">Waterproof Options</div>
-              <p class="text-sm text-gray-600 dark:text-gray-300">Two-Way Radios with IP67 rating for harsh environments.</p>
-            </div>
-          </li>
-        </ul>
+  <!-- Caption (optional) -->
+  <p class="mt-3 text-center text-gray-700 dark:text-gray-300 text-sm">
+    Click to play video
+  </p>
+</div>
+</section>
+
+<!-- Services Grid -->
+<section class="bg-[#F5F5F5] py-20">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-center text-[#0A192F] mb-12">Our Solutions</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
+        <h3 class="text-xl font-semibold text-[#0A192F] mb-3">Data Radio Modems</h3>
+        <p class="text-gray-600">Reliable encrypted systems for mission-critical applications.</p>
       </div>
-
-      <!-- Right List -->
-      <div class="rounded-2xl bg-white/90 p-6 shadow-md ring-1 ring-black/5 backdrop-blur dark:bg-gray-900/70 dark:ring-white/10">
-        <div class="mb-6 flex items-center gap-3">
-          <span class="inline-flex size-10 items-center justify-center rounded-xl bg-amber-700/20 text-amber-700 ring-1 ring-amber-700/40 dark:bg-amber-700/30 dark:text-amber-200 dark:ring-amber-700/50">
-            <svg viewBox="0 0 24 24" fill="none" class="size-5" stroke="currentColor" stroke-width="1.5">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15M12 4.5v15"/>
-            </svg>
-          </span>
-          <h3 class="text-xl font-semibold text-gray-900 dark:text-white">Benefits</h3>
-        </div>
-        <ul class="space-y-3">
-          <li class="flex gap-3">
-            <span class="mt-1 size-2.5 rounded-full bg-amber-700"></span>
-            <div>
-              <div class="font-medium text-gray-900 dark:text-white">Lower Total Cost</div>
-              <p class="text-sm text-gray-600 dark:text-gray-300">Private data modems save on recurring carrier fees.</p>
-            </div>
-          </li>
-          <li class="flex gap-3">
-            <span class="mt-1 size-2.5 rounded-full bg-[var(--color-primary)]"></span>
-            <div>
-              <div class="font-medium text-gray-900 dark:text-white">Security & Control</div>
-              <p class="text-sm text-gray-600 dark:text-gray-300">Private infrastructure and configurable access policies.</p>
-            </div>
-          </li>
-          <li class="flex gap-3">
-            <span class="mt-1 size-2.5 rounded-full bg-indigo-500"></span>
-            <div>
-              <div class="font-medium text-gray-900 dark:text-white">Industrial-Grade</div>
-              <p class="text-sm text-gray-600 dark:text-gray-300">Ruggedized hardware, wide temp ranges, and FCC compliance.</p>
-            </div>
-          </li>
-          <li class="flex gap-3">
-            <span class="mt-1 size-2.5 rounded-full bg-emerald-500"></span>
-            <div>
-              <div class="font-medium text-gray-900 dark:text-white">Flexibility and Control</div>
-              <p class="text-sm text-gray-600 dark:text-gray-300">Flexible interfaces: RS-232, RS-485, Ethernet, USB, and more.</p>
-            </div>
-          </li>
-        </ul>
+      <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
+        <h3 class="text-xl font-semibold text-[#0A192F] mb-3">OEM Solutions</h3>
+        <p class="text-gray-600">Connecting systems seamlessly for actionable insights.</p>
       </div>
-    </div>
-
-    <!-- CTA row -->
-    <div class="mt-12 flex flex-col items-center text-center">
-      <hgroup>
-        <h2 class="text-base font-semibold text-[var(--color-primary)] dark:text-amber-400">Get started</h2>
-        <p class="mt-2 text-3xl font-semibold tracking-tight text-primary sm:text-4xl dark:text-white">
-          Solutions you can trust from the experts in data radio communications - Raveon Technologies
-      </hgroup>
-      <p class="mx-auto mt-4 max-w-xl text-gray-800 text-lg dark:text-gray-300">
-       At Raveon, we are your dedicated partner in mission critical design, construction, engineering, and follow-up customer service. Unrivalled care and attention with an industry leader.
-      </p>
-
-      <div class="mt-8 flex flex-wrap justify-center gap-3">
-        <a href="#"
-           class="inline-flex items-center gap-2 rounded-xl bg-[var(--color-primary)] px-5 py-2.5 text-white shadow hover:opacity-95 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-primary)]">
-          Get started
-          <svg viewBox="0 0 24 24" fill="none" class="size-5" stroke="currentColor" stroke-width="1.5">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M13 5l7 7-7 7"/>
-          </svg>
-        </a>
-        <a href="#"
-           class="inline-flex items-center gap-2 rounded-xl bg-amber-700 px-5 py-2.5 text-white shadow hover:bg-amber-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-700">
-          Talk to Sales
-        </a>
+      <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
+        <h3 class="text-xl font-semibold text-[#0A192F] mb-3">Wireless Telemetry</h3>
+        <p class="text-gray-600">Custom solutions built to scale with your organization.</p>
+      </div>
+      <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
+        <h3 class="text-xl font-semibold text-[#0A192F] mb-3">VHF/UHF Data Radios</h3>
+        <p class="text-gray-600">Custom solutions built to scale with your organization.</p>
+      </div>
+      <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
+        <h3 class="text-xl font-semibold text-[#0A192F] mb-3">GPS Tracking</h3>
+        <p class="text-gray-600">Custom solutions built to scale with your organization.</p>
+      </div>
+      <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
+        <h3 class="text-xl font-semibold text-[#0A192F] mb-3">Custom Engineering</h3>
+        <p class="text-gray-600">Custom solutions built to scale with your organization.</p>
       </div>
     </div>
   </div>
 </section>
 
 
-{% endblock %}
+
+<!-- Call-to-Action Footer -->
+<div class="relative bg-secondary dark:bg-gray-900">
+  <div class="lg:absolute lg:inset-0 lg:left-1/2">
+    <img src="{% static 'img/engineer-young.jpg' %}" 
+       alt="Background" 
+       class="absolute inset-0 w-full h-full object-cover" id="parallax-bg" />
+  <!-- Dark Overlay -->
+  <div class="absolute inset-0 bg-primary/60"></div>
+  </div>
+  <div class="pt-16 pb-24 sm:pt-24 sm:pb-32 lg:mx-auto lg:grid lg:max-w-7xl lg:grid-cols-2 lg:pt-32">
+    <div class="px-6 lg:px-8">
+      <div class="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
+        <h2 class="text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl dark:text-white">Let's work together</h2>
+        <p class="mt-2 text-lg/8 text-gray-200 dark:text-gray-400">Proin volutpat consequat porttitor cras nullam gravida at orci molestie a eu arcu sed ut tincidunt magna.</p>
+        <form action="#" method="POST" class="mt-16">
+          <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+            <div>
+              <label for="first-name" class="block text-sm/6 font-semibold text-white dark:text-white">First name</label>
+              <div class="mt-2.5">
+                <input id="first-name" type="text" name="first-name" autocomplete="given-name" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+              </div>
+            </div>
+            <div>
+              <label for="last-name" class="block text-sm/6 font-semibold text-white dark:text-white">Last name</label>
+              <div class="mt-2.5">
+                <input id="last-name" type="text" name="last-name" autocomplete="family-name" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+              </div>
+            </div>
+            <div class="sm:col-span-2">
+              <label for="email" class="block text-sm/6 font-semibold text-white dark:text-white">Email</label>
+              <div class="mt-2.5">
+                <input id="email" type="email" name="email" autocomplete="email" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+              </div>
+            </div>
+            <div class="sm:col-span-2">
+              <label for="company" class="block text-sm/6 font-semibold text-white dark:text-white">Company</label>
+              <div class="mt-2.5">
+                <input id="company" type="text" name="company" autocomplete="organization" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+              </div>
+            </div>
+            <div class="sm:col-span-2">
+              <div class="flex justify-between text-sm/6">
+                <label for="phone" class="block font-semibold text-white dark:text-white">Phone</label>
+                <p id="phone-description" class="text-gray-400 dark:text-gray-500">Optional</p>
+              </div>
+              <div class="mt-2.5">
+                <input id="phone" type="tel" name="phone" autocomplete="tel" aria-describedby="phone-description" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500" />
+              </div>
+            </div>
+            <div class="sm:col-span-2">
+              <div class="flex justify-between text-sm/6">
+                <label for="message" class="block text-sm/6 font-semibold text-white dark:text-white">How can we help you?</label>
+                <p id="message-description" class="text-gray-400 dark:text-gray-500">Max 500 characters</p>
+              </div>
+              <div class="mt-2.5">
+                <textarea id="message" name="message" rows="4" aria-describedby="message-description" class="block w-full rounded-md bg-white px-3.5 py-2 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 dark:bg-white/5 dark:text-white dark:outline-white/10 dark:placeholder:text-gray-500 dark:focus:outline-indigo-500"></textarea>
+              </div>
+            </div>
+            <fieldset class="sm:col-span-2">
+              <legend class="block text-sm/6 font-semibold text-white dark:text-white">Expected budget</legend>
+              <div class="mt-4 space-y-4 text-sm/6 text-gray-600 dark:text-gray-400">
+                <div class="flex gap-x-2.5">
+                  <input id="budget-under-25k" type="radio" name="budget" value="under_25k" checked class="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 dark:border-gray-600 dark:before:bg-white dark:checked:border-indigo-500 dark:checked:bg-indigo-500 dark:focus-visible:outline-indigo-500 dark:disabled:border-white/10 dark:disabled:bg-gray-800/50 dark:disabled:before:bg-gray-600 forced-colors:appearance-auto forced-colors:before:hidden" />
+                  <label for="budget-under-25k" class="text-gray-400">Less than $25K</label>
+                </div>
+                <div class="flex gap-x-2.5">
+                  <input id="budget-25k-50k" type="radio" name="budget" value="25k-50k" class="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 dark:border-gray-600 dark:before:bg-white dark:checked:border-indigo-500 dark:checked:bg-indigo-500 dark:focus-visible:outline-indigo-500 dark:disabled:border-white/10 dark:disabled:bg-gray-800/50 dark:disabled:before:bg-gray-600 forced-colors:appearance-auto forced-colors:before:hidden" />
+                  <label for="budget-25k-50k" class="text-gray-400">$25K – $50K</label>
+                </div>
+                <div class="flex gap-x-2.5">
+                  <input id="budget-50k-100k" type="radio" name="budget" value="50k-100k" class="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 dark:border-gray-600 dark:before:bg-white dark:checked:border-indigo-500 dark:checked:bg-indigo-500 dark:focus-visible:outline-indigo-500 dark:disabled:border-white/10 dark:disabled:bg-gray-800/50 dark:disabled:before:bg-gray-600 forced-colors:appearance-auto forced-colors:before:hidden" />
+                  <label for="budget-50k-100k" class="text-gray-400">$50K – $100K</label>
+                </div>
+                <div class="flex gap-x-2.5">
+                  <input id="budget-over-100k" type="radio" name="budget" value="over_100k" class="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 dark:border-gray-600 dark:before:bg-white dark:checked:border-indigo-500 dark:checked:bg-indigo-500 dark:focus-visible:outline-indigo-500 dark:disabled:border-white/10 dark:disabled:bg-gray-800/50 dark:disabled:before:bg-gray-600 forced-colors:appearance-auto forced-colors:before:hidden" />
+                  <label for="budget-over-100k" class="text-gray-400">$100K+</label>
+                </div>
+              </div>
+            </fieldset>
+          </div>
+          <div class="mt-10 flex justify-end border-t border-gray-900/10 pt-8 dark:border-white/10">
+            <button type="submit" class="rounded-md bg-button px-3.5 py-2.5 text-center text-sm font-semibold text-on-button shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 dark:bg-indigo-500 dark:hover:bg-indigo-400 dark:focus-visible:outline-indigo-500">Send message</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Parallax Script -->
+<script>
+  document.addEventListener("scroll", () => {
+    const scrollY = window.scrollY;
+    const bg = document.querySelector("section img");
+
+    const scale = 1 + scrollY * 0.0005;
+    const translateY = scrollY * 0.2;
+
+    bg.style.transform = `scale(${scale}) translateY(${translateY}px)`;
+  });
+</script>
+
+{% endblock content %}

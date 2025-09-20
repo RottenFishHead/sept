@@ -2,6 +2,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class Product(models.Model):
@@ -9,7 +10,7 @@ class Product(models.Model):
     slug = models.SlugField(max_length=220, unique=True, blank=True)
     image = models.ImageField(upload_to="products/%Y/%m/%d/", blank=True, null=True)
     short_description = models.CharField(max_length=280, blank=True)
-    description = models.TextField(blank=True)
+    description = CKEditor5Field(blank=True)
     category = models.CharField(max_length=120, blank=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
