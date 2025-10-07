@@ -8,6 +8,7 @@ urlpatterns = [
     path("", include("core.urls")),
     path("articles/", include("articles.urls", namespace="articles")),
     path("products/", include("products.urls", namespace="products")),
+    path("services/", include("services.urls", namespace="services")),
     path("__reload__/", include("django_browser_reload.urls")),
     path("accounts/", include("accounts.urls")),
     path("ckeditor5/", include('django_ckeditor_5.urls')),

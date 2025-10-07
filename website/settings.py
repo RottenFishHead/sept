@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     "core.apps.CoreConfig",
     "articles.apps.ArticlesConfig",
     "products.apps.ProductsConfig",
+    "services.apps.ServicesConfig",
     "accounts.apps.AccountsConfig",
     "django.contrib.admin",
     "django.contrib.auth",

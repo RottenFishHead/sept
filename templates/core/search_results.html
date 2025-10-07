@@ -1,0 +1,52 @@
+{% extends "components/base.html" %}
+{% block content %}
+<section class="max-w-4xl mx-auto px-6 py-12">
+  <h1 class="text-3xl font-bold mb-6">Search results for "{{ q }}"</h1>
+
+  {% if results.services or results.products or results.articles %}
+    {% if results.services %}
+      <h2 class="text-xl font-semibold mt-8 mb-4 text-primary">Services</h2>
+      <ul class="space-y-3">
+        {% for s in results.services %}
+          <li>
+            <a href="{% url 'services:service_detail' s.slug %}" class="text-blue-600 hover:underline font-medium">
+              {{ s.name }}
+            </a>
+            <p class="text-gray-500 text-sm">{{ s.short_description }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if results.products %}
+      <h2 class="text-xl font-semibold mt-8 mb-4 text-primary">Products</h2>
+      <ul class="space-y-3">
+        {% for p in results.products %}
+          <li>
+            <a href="{% url 'products:product_detail' p.slug %}" class="text-blue-600 hover:underline font-medium">
+              {{ p.name }}
+            </a>
+            <p class="text-gray-500 text-sm">{{ p.short_description }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if results.articles %}
+      <h2 class="text-xl font-semibold mt-8 mb-4 text-primary">Articles</h2>
+      <ul class="space-y-3">
+        {% for a in results.articles %}
+          <li>
+            <a href="{% url 'articles:article_detail' a.slug %}" class="text-blue-600 hover:underline font-medium">
+              {{ a.title }}
+            </a>
+            <p class="text-gray-500 text-sm">{{ a.excerpt }}</p>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  {% else %}
+    <p class="text-gray-600 mt-8">No results found.</p>
+  {% endif %}
+</section>
+{% endblock %}
