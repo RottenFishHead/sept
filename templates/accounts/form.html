@@ -1,0 +1,25 @@
+{% extends 'accounts/base.html' %}
+{% block title %}{{ title }} · Accounts{% endblock %}
+{% block content %}
+<div class="max-w-2xl mx-auto">
+  <h2 class="text-2xl font-semibold mb-4">{{ title }}</h2>
+  <form method="post" class="space-y-4">
+    {% csrf_token %}
+    {% for field in form %}
+      <div>
+        <label class="block mb-1 text-sm font-medium">{{ field.label }}</label>
+        {{ field }}
+        {% if field.help_text %}
+          <p class="text-xs text-gray-500 mt-1">{{ field.help_text }}</p>
+        {% endif %}
+        {% for e in field.errors %}
+          <p class="text-sm text-red-600">{{ e }}</p>
+        {% endfor %}
+      </div>
+    {% endfor %}
+    <div class="pt-2">
+      <button class="inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Save</button>
+    </div>
+  </form>
+</div>
+{% endblock %}

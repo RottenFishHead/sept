@@ -1,0 +1,106 @@
+# OS files
+# Windows thumbnail cache
+Thumbs.db
+Desktop.ini
+
+# Python compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python envs and packaging
+.env
+.env.*
+venv/
+venv*/
+.venv/
+env/
+ENV/
+.Python
+pip-wheel-metadata/
+pip-selfcheck.json
+
+# Django & general project files
+db.sqlite3
+*.sqlite3
+local_settings.py
+# user uploaded files
+/media/
+/media/*
+!media/.gitkeep
+
+# staticfiles (collected static output)
+# ignore everything under staticfiles by default but allow vendor assets to be committed
+/staticfiles/*
+!staticfiles/vendor/
+!staticfiles/vendor/**
+
+# Tailwind / frontend build outputs
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+
+# Tailwind / build caches
+.tailwindcss/
+.tailwind-cache/
+.tailwindcache/
+
+theme/static/css/dist/*
+# Built CSS / dist folders (common targets)
+# ignore the dist folder contents by default but keep committed build CSS if desired
+theme/static/css/dist/*
+!theme/static/css/dist/styles.css
+static/src/.tmp/
+staticfiles/src/.tmp/
+
+# Editor and IDE
+.vscode/
+*.code-workspace
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Logs, coverage, caches
+*.log
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Byte-compiled / distribution
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+
+# OS X
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Keys and certificates
+*.pem
+*.key
+
+# Misc
+*.pot
+*.mo
+*.swp
+
+# Ignore secrets files often used in CI/local
+secrets.json
+.env.local
+
+# Ignore IDE workspace specific files
+.vscode/*
+
+# If you use Docker, uncomment these
+# .docker/
+# docker-compose.override.yml
+.backup-*

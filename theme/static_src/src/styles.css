@@ -4,12 +4,19 @@
 
 @theme {
     --color-primary: #033C6D;
-    --color-secondary: #0A5999;
-    --color-accent: #4B91E2;
-    --color-gold: #033C6D;
+    --color-secondary: #045397;
+    --color-accent: #056bc2;
+    --color-contrast: #3c6d03;
+    --color-gold: #F2B036;
     --color-background: #033C6D;
     --color-error: #e53e3e;
-    --color-button: #ffa600;
+    --color-button: #e87e27;
+    --color-tech: #2563EB;
+    --color-gps: #2DD4BF;
+    --color-data: #7127e8;
+    --color-remote: #374151;
+    --color-wireless: #FBBF24;
+    --color-accessories:#38BDF8;
     --color-on-primary: #ffffff;
     --color-on-secondary: #ffffff;
     --color-on-gold: #000000;

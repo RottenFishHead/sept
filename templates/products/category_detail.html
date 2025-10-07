@@ -1,0 +1,65 @@
+{% extends "components/base.html" %}
+{% load static %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block content %}
+<div class="max-w-7xl mx-auto px-4 py-10">
+
+    <!-- Category Hero -->
+    <div class="mb-12 text-center">
+        {% if category.image %}
+            <img src="{{ category.image.url }}" alt="{{ category.name }}"
+                 class="w-full h-72 object-cover rounded-2xl shadow mb-6">
+        {% endif %}
+
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white">
+            {{ category.name }}
+        </h1>
+        <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            {% if category.features %}
+                {{ category.features|safe }}
+            {% else %}
+                Explore our products in the {{ category.name }} category.
+            {% endif %}
+        </p>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {% for product in products %}
+        <div class="bg-white dark:bg-gray-800 rounded-2xl shadow hover:shadow-lg transition duration-300 overflow-hidden">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-56 object-cover">
+            {% else %}
+                <div class="w-full h-56 flex items-center justify-center bg-gray-100 dark:bg-gray-700 text-gray-400">
+                    No Image
+                </div>
+            {% endif %}
+
+            <div class="p-6">
+                <h2 class="text-xl font-semibold text-gray-900 dark:text-white">
+                    <a href="{{ product.get_absolute_url }}">
+                        {{ product.name }}
+                    </a>
+                </h2>
+                <p class="mt-2 text-sm text-gray-600 dark:text-gray-300 line-clamp-3">
+                    {{ product.short_description|default:"No description available." }}
+                </p>
+                <div class="mt-4">
+                    <a href="{{ product.get_absolute_url }}"
+                       class="inline-block px-4 py-2 text-sm font-medium rounded-lg bg-primary text-white hover:bg-indigo-700 transition">
+                        View Details
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+            <p class="col-span-full text-center text-gray-500">
+                No products found in this category.
+            </p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

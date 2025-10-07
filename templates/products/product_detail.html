@@ -1,44 +1,173 @@
 {% extends "components/base.html" %}
+{% load static %}
+
+{% block head %}
+  <title>{{ product.meta_title }}</title>
+  <meta name="description" content="{{ product.meta_description }}">
+  {% if product.seo_keywords %}
+    <meta name="keywords" content="{{ product.seo_keywords }}">
+  {% endif %}
+  {% if product.meta_canonical %}
+    <link rel="canonical" href="{{ product.meta_canonical }}">
+  {% endif %}
+{% endblock %}
+
 {% block content %}
-<div class="mx-auto max-w-6xl px-3 sm:px-4 lg:px-8 py-10">
-  <div class="grid gap-8 lg:grid-cols-2">
-    <div class="overflow-hidden rounded-2xl ring-1 ring-black/5 dark:ring-white/10 bg-white dark:bg-gray-900">
-      <div class="aspect-square bg-gray-50 dark:bg-gray-800">
-        {% if product.image %}
-          <img src="{{ product.image.url }}" alt="{{ product.name }}" class="h-full w-full object-cover">
-        {% else %}
-          <div class="flex h-full w-full items-center justify-center text-gray-400">No Image</div>
-        {% endif %}
-      </div>
-    </div>
+<style>
+.ckeditor-content a {
+  color: #1a76e7; /* Tailwind blue-500 */
+}
+.ckeditor-content a:hover {
+  color: #b63c03; /* Tailwind yellow-500 */
+  text-decoration: underline;
+}
+</style>
 
-    <div>
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white">{{ product.name }}</h1>
+
+<div class="ckeditor-content max-w-6xl mx-auto p-6">
+
+  <!-- Product Header -->
+  <div class="bg-white shadow-lg rounded-xl overflow-hidden">
+    {% if product.image %}
+      <img src="{{ product.image.url }}" alt="{{ product.name }}"
+           class="w-50 h-50 object-cover mx-auto">
+    {% endif %}
+
+    <div class="p-6">
+      <h1 class="text-3xl font-bold text-primary">{{ product.name }}</h1>
+      <p class="mt-2 text-gray-600">{{ product.short_description }}</p>
+
       {% if product.category %}
-        <div class="mt-2 inline-flex items-center rounded-full bg-amber-700/10 px-2 py-0.5 text-xs font-medium text-amber-700 ring-1 ring-amber-700/30">{{ product.category }}</div>
+        <span class="inline-block mt-3 px-3 py-1 bg-indigo-100 text-indigo-700 text-sm rounded-full">
+          {{ product.category }}
+        </span>
       {% endif %}
-     
-
-      {% if product.short_description %}
-        <p class="mt-4 text-gray-700 dark:text-gray-300">{{ product.short_description }}</p>
-      {% endif %}
-      {% if product.description %}
-        <div class="prose dark:prose-invert mt-6 max-w-none">{{ product.description|linebreaks }}</div>
-      {% endif %}
-
-      <div class="mt-8 flex gap-3">
-        <a href="tel:+17605551234" class="rounded-md bg-[var(--color-primary)] px-4 py-2 text-white hover:opacity-95">Contact Sales</a>
-        <a href="{% url 'products:edit' product.slug %}" class="rounded-md bg-amber-700 px-4 py-2 text-white">Edit</a>
-        <form method="post" action="{% url 'products:delete' product.slug %}" onsubmit="return confirm('Delete this product?');">
-          {% csrf_token %}
-          <button class="rounded-md bg-red-600 px-4 py-2 text-white">Delete</button>
-        </form>
-      </div>
     </div>
   </div>
 
-  {% if related %}
-  <h2 class="mt-12 text-xl font-semibold text-gray-900 dark:text-white">Related</h2>
+  <!-- Main Description -->
+  {% if product.description %}
+  <div class="mt-8 bg-white shadow rounded-xl p-6">
+    <h2 class="text-2xl font-semibold text-primary mb-4">Overview of {{ product.name }}  </h2>
+    <div class="prose max-w-none">
+      {{ product.description|safe }}
+    </div>
+ 
+  {% endif %}
+
+  <!-- Sections -->
+  {% if product.section_1 %}
+  
+    <div class="prose max-w-none mt-6">
+      {{ product.section_1|safe }}
+    </div>
+ 
+  {% endif %}
+  
+  {% if product.image_1 %}
+  <div class="mt-8">
+    <img src="{{ product.image_1.url }}" alt="Section 1 image"
+         class="w-full rounded-xl shadow-md">
+    {% if product.caption_1 %}
+      <p class="text-sm text-gray-500 mt-2 text-center">{{ product.caption_1 }}</p>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {% if product.section_2 %}
+ 
+    <div class="prose max-w-none mt-6">
+      {{ product.section_2|safe }}
+    </div>
+ 
+  {% endif %}
+  
+  {% if product.image_2 %}
+  <div class="mt-8">
+    <img src="{{ product.image_2.url }}" alt="Section 2 image"
+         class="w-full rounded-xl shadow-md">
+    {% if product.caption_2 %}
+      <p class="text-sm text-gray-500 mt-2 text-center">{{ product.caption_2 }}</p>
+    {% endif %}
+  </div>
+  {% endif %}
+
+  {% if product.section_3 or product.image_3 %}
+
+      <div class="prose max-w-none mt-6">
+        {{ product.section_3|safe }}
+      </div>
+   
+    {% if product.image_3 %}
+      <img src="{{ product.image_3.url }}" alt="Section 3 image"
+           class="rounded-xl shadow-md">
+      {% if product.caption_3 %}
+        <p class="text-sm text-gray-500 mt-2 text-center">{{ product.caption_3 }}</p> 
+    {% endif %}
+  </div>
+  {% endif %}
+  {% endif %}
+
+{% if product.general_features or product.specifications or product.downloads or product.accessories %}
+  <!-- Full-width section -->
+<section class="w-full bg-primary rounded-xl p-6 px-4">
+  <div class="max-w-4xl mx-auto">
+    <div x-data="{ tab: 'features' }" class="bg-white shadow-lg rounded-2xl p-6">
+
+      <!-- Tab Buttons -->
+      <div class="flex border-b border-gray-200">
+        <button @click="tab = 'features'" 
+                :class="tab === 'features' ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                class="w-1/4 py-2 text-center border-b-2 font-medium text-sm">
+          General Features
+        </button>
+        <button @click="tab = 'specs'"
+                :class="tab === 'specs' ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                class="w-1/4 py-2 text-center border-b-2 font-medium text-sm">
+          Specifications
+        </button>
+        <button @click="tab = 'downloads'"
+                :class="tab === 'downloads' ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                class="w-1/4 py-2 text-center border-b-2 font-medium text-sm">
+          Downloads
+        </button>
+        <button @click="tab = 'accessories'"
+                :class="tab === 'accessories' ? 'border-indigo-500 text-indigo-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+                class="w-1/4 py-2 text-center border-b-2 font-medium text-sm">
+          Accessories
+        </button>
+      </div>
+
+      <!-- Tab Panels -->
+      <div class="mt-6">
+        <!-- General Features -->
+        <div x-show="tab === 'features'" class="prose max-w-none">
+          {{ product.general_features|safe }}
+        </div>
+
+        <!-- Specifications -->
+        <div x-show="tab === 'specs'" class="prose max-w-none">
+          {{ product.specifications|safe }}
+        </div>
+
+        <!-- Downloads -->
+        <div x-show="tab === 'downloads'" class="prose max-w-none">
+          {{ product.downloads|safe }}
+        </div>
+
+        <!-- Accessories -->
+        <div x-show="tab === 'accessories'" class="prose max-w-none">
+          {{ product.accessories|safe }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endif %}
+  <!-- Related Products -->
+ {% if related %}
+  <h2 class="mt-12 text-xl font-semibold text-gray-900 dark:text-white">Related {{ product.category.name }} Products</h2>
   <div class="mt-4 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
     {% for p in related %}
       <a href="{% url 'products:detail' p.slug %}" class="overflow-hidden rounded-xl bg-white ring-1 ring-black/5 hover:shadow-md transition dark:bg-gray-900 dark:ring-white/10">
@@ -51,8 +180,9 @@
         </div>
         <div class="p-3">
           <div class="flex items-center justify-between">
-            <div class="font-medium text-gray-900 dark:text-white">{{ p.name }}</div>
-            <div class="text-sm font-semibold text-amber-700">${{ p.price }}</div>
+            <div class="font-medium text-primary dark:text-white">{{ p.name }}
+            <p class="text-sm font-semibold text-amber-700">{{ p.short_description }}</p>
+              </div>
           </div>
         </div>
       </a>
@@ -60,4 +190,4 @@
   </div>
   {% endif %}
 </div>
-{% endblock %}
+{% endblock content %}

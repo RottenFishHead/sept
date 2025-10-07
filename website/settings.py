@@ -23,6 +23,7 @@ INSTALLED_APPS = [
     "core.apps.CoreConfig",
     "articles.apps.ArticlesConfig",
     "products.apps.ProductsConfig",
+    "accounts.apps.AccountsConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -35,6 +36,7 @@ INSTALLED_APPS = [
     "django_browser_reload",
     "widget_tweaks",
     "django_ckeditor_5",
+    "storages",
 
 ]
 
@@ -47,13 +49,14 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
+    
 ]
 
 ROOT_URLCONF = "website.urls"
 
 TEMPLATES = [
     {
-        "BACKEND": "django.template.backends.django.DjangoTemplates",
+        "BACKEND": 'django.template.backends.django.DjangoTemplates',
         "DIRS": [ BASE_DIR / "templates" ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -79,7 +82,45 @@ DATABASES = {
     }
 }
 
+# AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
+# AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
+# AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
+# AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME", "us-east-1")
 
+# # URL for accessing files
+# AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
+
+# # Default storage backends
+# DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+
+# STATICFILES_STORAGE = "website.storage_backends.StaticStorage"
+# STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
+
+# # MEDIA FILES (uploads from CKEditor, user uploads)
+# DEFAULT_FILE_STORAGE = "website.storage_backends.MediaStorage"
+# MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [
+    BASE_DIR / "static",       # e.g., /Website/static/
+]
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_DIRS = [BASE_DIR / "static"]
+
+
+SVG_ICON_SOURCE_DIR = BASE_DIR / "static" / "icons" / "source"
+SVG_ICON_SPRITE_FILE = BASE_DIR / "static" / "icons" / "sprite.svg"
+
+# CKEditor uploads go into media/uploads/
+CKEDITOR_UPLOAD_PATH = "uploads/"
+
+# CKEditor file uploads
+CKEDITOR_UPLOAD_PATH = "uploads/"   # This will create uploads/ inside your bucket
+CKEDITOR_IMAGE_BACKEND = "pillow"
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
@@ -110,16 +151,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.2/howto/static-files/
-
-STATIC_URL = "static/"
-
-STATICFILES_DIRS = [BASE_DIR / "static"]
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -167,10 +199,13 @@ customColorPalette = [
 CKEDITOR_5_CONFIGS = {
     'default': {
         'toolbar': {
-            'items': ['heading', '|', 'bold', 'italic', 'link',
-                      'bulletedList', 'numberedList', 'blockQuote', 'imageUpload', ],
-                    }
-
+            'items': ['heading', '|', 'outdent', 'indent', '|', 'bold', 'italic', 'link', 'underline',
+                      'code', 'highlight', '|', 'codeBlock', 'sourceEditing',
+                    'bulletedList', 'numberedList', 'todoList', '|',  'blockQuote', 'imageUpload', '|',
+                    'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor','insertTable',
+                    ],
+                    "extraPlugins": ["Font"],
+        }
     },
     'extends': {
         'blockToolbar': [
@@ -233,3 +268,5 @@ CKEDITOR_5_CONFIGS = {
 
 # Define a constant in settings.py to specify file upload permissions
 CKEDITOR_5_FILE_UPLOAD_PERMISSION = "staff"
+
+default_app_config = "accounts.apps.AccountsConfig"

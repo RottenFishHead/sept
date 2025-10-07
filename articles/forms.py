@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import inlineformset_factory
 from .models import Article, ArticleImage
+from django_ckeditor_5.widgets import CKEditor5Widget
 
 class ArticleForm(forms.ModelForm):
     class Meta:
@@ -9,6 +10,9 @@ class ArticleForm(forms.ModelForm):
             "title", "excerpt", "body", "published",
             "seo_title", "seo_description", "seo_keywords", "og_image", "canonical_url",
         ]
+        widgets = {
+            "body": CKEditor5Widget(attrs={"class": "django_ckeditor_5"}, config_name="default"),
+        }
 
 class ArticleImageForm(forms.ModelForm):
     class Meta:

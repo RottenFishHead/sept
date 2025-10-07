@@ -6,12 +6,13 @@
 
 <!-- Hero Section -->
 <section class="relative h-[650px] flex items-center justify-center text-center overflow-hidden">
-  <!-- Background Image -->
-  <img src="{% static 'img/raveon-bg.jpg' %}" 
-       alt="Background" 
-       class="absolute inset-0 w-full h-full object-cover" id="parallax-bg" />
+  <!-- Background Video -->
+  <video autoplay muted class="absolute inset-0 w-full h-full object-cover" id="parallax-bg">
+    <source src="{% static 'vid/hero_vid.mp4' %}" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
   <!-- Dark Overlay -->
-  <div class="absolute inset-0 bg-primary/60"></div>
+  <div class="absolute inset-0 bg-primary/40"></div>
 
   <!-- Hero Content -->
   <div class="relative z-10 max-w-3xl px-6">
@@ -19,7 +20,7 @@
       Advanced Technology Solutions
     </h1>
     <p class="mt-4 text-lg md:text-xl text-on-background">
-      Delivering reliable communications and software systems for industry, defense, and enterprise.
+      Delivering reliable data communications and radio solutions for industry, defense, and enterprise.
     </p>
     <div class="mt-8 flex justify-center space-x-4">
       <a href="#"
@@ -34,9 +35,9 @@
   </div>
 </section>
 
+
 <!-- About Section -->
 <section class="bg-white py-20">
-  
   <div class="max-w-6xl mx-auto px-6 text-center">
     <h2 class="text-3xl font-bold text-gray-900 mb-4">Who We Are</h2>
     <p class="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -76,7 +77,7 @@
     <div class="grid md:grid-cols-3 gap-8">
       <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
         <h3 class="text-xl font-semibold text-[#0A192F] mb-3">Data Radio Modems</h3>
-        <p class="text-gray-600">Reliable encrypted systems for mission-critical applications.</p>
+        <p class="text-gray-600">Custom solutions as well as established wireless technologies for data transmission.</p>
       </div>
       <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
         <h3 class="text-xl font-semibold text-[#0A192F] mb-3">OEM Solutions</h3>
@@ -84,15 +85,15 @@
       </div>
       <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
         <h3 class="text-xl font-semibold text-[#0A192F] mb-3">Wireless Telemetry</h3>
-        <p class="text-gray-600">Custom solutions built to scale with your organization.</p>
+        <p class="text-gray-600">Remote management and transmission solutions for critical data.</p>
       </div>
       <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
         <h3 class="text-xl font-semibold text-[#0A192F] mb-3">VHF/UHF Data Radios</h3>
-        <p class="text-gray-600">Custom solutions built to scale with your organization.</p>
+        <p class="text-gray-600">The frequencies you need with free options for in data communication.</p>
       </div>
       <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
         <h3 class="text-xl font-semibold text-[#0A192F] mb-3">GPS Tracking</h3>
-        <p class="text-gray-600">Custom solutions built to scale with your organization.</p>
+        <p class="text-gray-600">Enhanced tracking solutions for real-time location data.</p>
       </div>
       <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
         <h3 class="text-xl font-semibold text-[#0A192F] mb-3">Custom Engineering</h3>
@@ -117,7 +118,7 @@
     <div class="px-6 lg:px-8">
       <div class="mx-auto max-w-xl lg:mx-0 lg:max-w-lg">
         <h2 class="text-4xl font-semibold tracking-tight text-pretty text-white sm:text-5xl dark:text-white">Let's work together</h2>
-        <p class="mt-2 text-lg/8 text-gray-200 dark:text-gray-400">Proin volutpat consequat porttitor cras nullam gravida at orci molestie a eu arcu sed ut tincidunt magna.</p>
+        <p class="mt-2 text-lg/8 text-gray-200 dark:text-gray-400">Connect with us and get started on the road to productivity.</p>
         <form action="#" method="POST" class="mt-16">
           <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
             <div>
@@ -167,19 +168,19 @@
               <div class="mt-4 space-y-4 text-sm/6 text-gray-600 dark:text-gray-400">
                 <div class="flex gap-x-2.5">
                   <input id="budget-under-25k" type="radio" name="budget" value="under_25k" checked class="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 dark:border-gray-600 dark:before:bg-white dark:checked:border-indigo-500 dark:checked:bg-indigo-500 dark:focus-visible:outline-indigo-500 dark:disabled:border-white/10 dark:disabled:bg-gray-800/50 dark:disabled:before:bg-gray-600 forced-colors:appearance-auto forced-colors:before:hidden" />
-                  <label for="budget-under-25k" class="text-gray-400">Less than $25K</label>
+                  <label for="budget-under-25k" class="text-gray-200">Less than $25K</label>
                 </div>
                 <div class="flex gap-x-2.5">
                   <input id="budget-25k-50k" type="radio" name="budget" value="25k-50k" class="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 dark:border-gray-600 dark:before:bg-white dark:checked:border-indigo-500 dark:checked:bg-indigo-500 dark:focus-visible:outline-indigo-500 dark:disabled:border-white/10 dark:disabled:bg-gray-800/50 dark:disabled:before:bg-gray-600 forced-colors:appearance-auto forced-colors:before:hidden" />
-                  <label for="budget-25k-50k" class="text-gray-400">$25K – $50K</label>
+                  <label for="budget-25k-50k" class="text-gray-200">$25K – $50K</label>
                 </div>
                 <div class="flex gap-x-2.5">
                   <input id="budget-50k-100k" type="radio" name="budget" value="50k-100k" class="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 dark:border-gray-600 dark:before:bg-white dark:checked:border-indigo-500 dark:checked:bg-indigo-500 dark:focus-visible:outline-indigo-500 dark:disabled:border-white/10 dark:disabled:bg-gray-800/50 dark:disabled:before:bg-gray-600 forced-colors:appearance-auto forced-colors:before:hidden" />
-                  <label for="budget-50k-100k" class="text-gray-400">$50K – $100K</label>
+                  <label for="budget-50k-100k" class="text-gray-200">$50K – $100K</label>
                 </div>
                 <div class="flex gap-x-2.5">
                   <input id="budget-over-100k" type="radio" name="budget" value="over_100k" class="relative mt-1 size-4 appearance-none rounded-full border border-gray-300 before:absolute before:inset-1 before:rounded-full before:bg-white not-checked:before:hidden checked:border-indigo-600 checked:bg-indigo-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:border-gray-300 disabled:bg-gray-100 disabled:before:bg-gray-400 dark:border-gray-600 dark:before:bg-white dark:checked:border-indigo-500 dark:checked:bg-indigo-500 dark:focus-visible:outline-indigo-500 dark:disabled:border-white/10 dark:disabled:bg-gray-800/50 dark:disabled:before:bg-gray-600 forced-colors:appearance-auto forced-colors:before:hidden" />
-                  <label for="budget-over-100k" class="text-gray-400">$100K+</label>
+                  <label for="budget-over-100k" class="text-gray-200">$100K+</label>
                 </div>
               </div>
             </fieldset>

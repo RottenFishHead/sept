@@ -2,9 +2,8 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.decorators.http import require_http_methods, require_safe
-
 from .forms import ProductForm
-from .models import Product
+from .models import Product, Category
 
 def seo_context(obj):
     return {
@@ -23,19 +22,14 @@ def product_list(request):
     if q:
         qs = qs.filter(name__icontains=q) | qs.filter(short_description__icontains=q)
     if category:
-        qs = qs.filter(category__iexact=category)
+        qs = qs.filter(category_id=category)
 
     paginator = Paginator(qs, 12)
     page = request.GET.get("page")
     products = paginator.get_page(page)
-    categories = (
-        Product.objects.filter(is_active=True)
-        .exclude(category="")
-        .values_list("category", flat=True)
-        .distinct()
-        .order_by("category")
-    )
-    return render(request, "products/product_list.html", {"products": products, "q": q or "", "category": category or "", "categories": categories})
+    categories = Category.objects.all().order_by("name")
+    return render(request, "products/product_list.html", 
+                  {"products": products, "q": q or "", "category": category or "", "categories": categories})
 
 @require_safe
 def product_detail(request, slug):
@@ -75,3 +69,25 @@ def product_delete(request, slug):
     product.delete()
     messages.success(request, "Product deleted.")
     return redirect("products:list")
+
+def category_list(request):
+    categories = Category.objects.all().order_by("name")
+
+    # Set up pagination (e.g. 6 categories per page)
+    paginator = Paginator(categories, 6)  
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, "products/category_list.html", {
+        "page_obj": page_obj,
+        "categories": page_obj.object_list,  # so template loops over "categories"
+    })
+
+def category_detail(request, pk):
+    category = get_object_or_404(Category, pk=pk)
+    products = Product.objects.filter(category=category, is_active=True)
+    ctx = {
+        "category": category,
+        "products": products,
+    }
+    return render(request, "products/category_detail.html", ctx)
