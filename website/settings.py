@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -83,23 +84,6 @@ DATABASES = {
     }
 }
 
-# AWS_ACCESS_KEY_ID = os.environ.get("AWS_ACCESS_KEY_ID")
-# AWS_SECRET_ACCESS_KEY = os.environ.get("AWS_SECRET_ACCESS_KEY")
-# AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME")
-# AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME", "us-east-1")
-
-# # URL for accessing files
-# AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com"
-
-# # Default storage backends
-# DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
-
-# STATICFILES_STORAGE = "website.storage_backends.StaticStorage"
-# STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
-
-# # MEDIA FILES (uploads from CKEditor, user uploads)
-# DEFAULT_FILE_STORAGE = "website.storage_backends.MediaStorage"
-# MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [
@@ -111,10 +95,14 @@ MEDIA_ROOT = BASE_DIR / "media"
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-
-SVG_ICON_SOURCE_DIR = BASE_DIR / "static" / "icons" / "source"
-SVG_ICON_SPRITE_FILE = BASE_DIR / "static" / "icons" / "sprite.svg"
+STORAGES = {
+    # ...
+    "staticfiles": {
+        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+    },
+}
 
 # CKEditor uploads go into media/uploads/
 CKEDITOR_UPLOAD_PATH = "uploads/"
