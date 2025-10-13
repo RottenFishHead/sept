@@ -1,0 +1,228 @@
+{% load static %}
+{% load tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Raveon Technologies</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/all.min.css' %}">
+
+    {% block meta_og %}
+      {% static 'img/og-default.webp' as og_default_path %}
+      {# Build absolute URL from scheme + host + static path #}
+      {% with absolute_default_og=request.scheme|add:"://"|add:request.get_host|add:og_default_path %}
+        <meta property="og:title" content="{{ page_title|default:'Raveon Technologies' }}">
+        <meta property="og:description" content="{{ meta_description|default:'Reliable data communications.' }}">
+        <meta property="og:type" content="{{ og_type|default:'website' }}">
+        <meta property="og:url" content="{{ request.build_absolute_uri }}">
+        <meta property="og:image" content="{{ og_image_url|default:absolute_default_og }}">
+        <meta property="og:image:alt" content="{{ og_image_alt|default:'Raveon image' }}">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="{{ og_image_url|default:absolute_default_og }}">
+      {% endwith %}
+  {% endblock %}
+
+</head>
+{% tailwind_css %}
+
+<body class="bg-gray-50 text-black font-sans leading-normal tracking-normal">
+
+  {% include 'components/navbar.html' %}
+ 
+ 
+<!--Begin About Content-->
+ <!-- Hero section  -->
+<section class="relative overflow-hidden min-h-[60vh] flex items-center">
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <img
+      src="{% static 'img/engineer-young.jpg' %}"  
+      alt="Our team at work"
+      class="h-full w-full object-cover"
+    />
+    <!-- gradient + scrim for text contrast -->
+    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/60
+                dark:from-black/60 dark:via-black/50 dark:to-black/70"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative mx-auto max-w-7xl px-6 py-24 md:py-28 lg:py-32">
+    <div class="max-w-2xl mx-auto text-center"> 
+      <h1 class="text-4xl font-extrabold tracking-tight text-white md:text-6xl">
+        About Raveon
+      </h1>
+      <p class="mt-4 text-lg text-white/90 md:text-xl">
+        We design and manufacture reliable data-radio solutions—built in Oceanside, CA,
+        and trusted worldwide.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3 justify-center">
+        <a href="/contact"
+           class="inline-flex items-center rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-white
+                  shadow hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary">
+          Talk to our team
+        </a>
+        <a href="#"
+           class="inline-flex items-center rounded-xl bg-white/10 px-5 py-3 text-sm font-semibold text-white
+                  ring-1 ring-white/30 backdrop-blur hover:bg-white/15 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-white/40">
+          Products
+        </a>
+      </div>
+
+      <!-- quick stats -->
+      <dl class="mt-10 grid grid-cols-2 gap-6 text-white/90 sm:grid-cols-4">
+        <div><dt class="text-sm">Years in business</dt><dd class="text-2xl font-bold">20+</dd></div>
+        <div><dt class="text-sm">Countries served</dt><dd class="text-2xl font-bold">35+</dd></div>
+        <div><dt class="text-sm">On-time delivery</dt><dd class="text-2xl font-bold">98%</dd></div>
+        <div><dt class="text-sm">Patents</dt><dd class="text-2xl font-bold">12</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <!-- subtle bottom wave (optional) -->
+  <div class="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-white to-transparent
+              dark:from-gray-950"></div>
+</section>
+
+<!-- End Hero section -->
+
+
+<!-- Company History Section -->
+<section class="bg-white py-16 sm:py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        Our Journey
+      </h2>
+      <p class="mt-4 text-lg leading-8 text-gray-600">
+        Since our founding in 2002, Raveon Technologies has been at the forefront of wireless communication technology. Our journey began with a vision to create innovative solutions that address the evolving needs of our customers.
+      </p>
+    </div>
+    <div class="mt-16 grid  grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="text-center">
+        <h3 class="text-xl font-semibold text-gray-900">2002</h3>
+        <p class="mt-2 text-gray-600">Founded as a research and development company to provide support to the wireless communication industry.</p>
+      </div>
+      <div class="text-center">
+        <h3 class="text-xl font-semibold text-gray-900">2003</h3>
+        <p class="mt-2 text-gray-600">Launched our first line of RF products.</p>
+      </div>
+      <div class="text-center">
+        <h3 class="text-xl font-semibold text-gray-900">2006</h3>
+        <p class="mt-2 text-gray-600">Expanded our product portfolio to include GPS and IoT solutions.</p>
+      </div>
+      <div class="text-center">
+        <h3 class="text-xl font-semibold text-gray-900">2011???</h3>
+        <p class="mt-2 text-gray-600">Introduced cloud-based management tools for enhanced device control.</p>
+      </div>
+      <div class="text-center">
+        <h3 class="text-xl font-semibold text-gray-900">2022</h3>
+        <p class="mt-2 text-gray-600">Celebrated 20 years of innovation and customer success.</p>
+      </div>
+      <div class="text-center">
+        <h3 class="text-xl font-semibold text-gray-900">2025</h3>
+        <p class="mt-2 text-gray-600">Raveon was purchased by long-time COO Andrew M. with the goal to expand marketbase.</p>
+      </div>
+    </div>
+  </div>    
+</section>
+<!-- End Company History Section -->
+<!-- Mission and Values Section -->
+<section class="bg-gray-50 py-16 sm:py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        Our Mission & Values
+      </h2>
+      <p class="mt-4 text-lg leading-8 text-gray-600">
+        At Raveon Technologies, our mission is to deliver cutting-edge wireless communication solutions that empower businesses to thrive in a connected world. We are committed to innovation, quality, and customer satisfaction.
+      </p>
+    </div>
+    <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="text-center">
+        <h3 class="text-xl font-semibold text-gray-900">Innovation</h3>
+        <p class="mt-2 text-gray-600">We continuously push the boundaries of technology to create solutions that meet the evolving needs of our customers.</p>
+      </div>
+      <div class="text-center">
+        <h3 class="text-xl font-semibold text-gray-900">Quality</h3>
+        <p class="mt-2 text-gray-600">We are dedicated to delivering products and services that exceed industry standards and customer expectations.</p>
+      </div>
+      <div class="text-center">
+        <h3 class="text-xl font-semibold text-gray-900">Customer Focus</h3>
+        <p class="mt-2 text-gray-600">Our customers are at the heart of everything we do. We strive to build lasting relationships based on trust and mutual success.</p>
+      </div>
+      <div class="text-center">
+        <h3 class="text-xl font-semibold text-gray-900">Integrity</h3>
+        <p class="mt-2 text-gray-600">We conduct our business with honesty and transparency, upholding the highest ethical standards.</p>
+      </div>
+      <div class="text-center">
+        <h3 class="text-xl font-semibold text-gray-900">Collaboration</h3>
+        <p class="mt-2 text-gray-600">We believe in the power of teamwork and partnerships to drive innovation and achieve shared goals.</p>
+      </div>
+    </div>
+  </div>    
+</section>  
+<!-- End Mission and Values Section -->
+<!-- Team Section -->
+<section class="bg-white py-16 sm:py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        Meet Our Team
+      </h2>
+      <p class="mt-4 text-lg leading-8 text-gray-600">
+        Our team of dedicated professionals is the driving force behind Raveon Technologies. With diverse expertise and a shared passion for innovation, we work together to deliver exceptional solutions for our customers.
+      </p>
+    </div>
+    <div class="mt-16 grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="text-center">
+        <img class="mx-auto h-24 w-24 rounded-full" src="{% static 'img/team/member1.jpg' %}" alt="Team Member 1">
+        <h3 class="mt-4 text-xl font-semibold text-gray-900">Jane Doe</h3>
+        <p class="mt-2 text-gray-600">CEO & Founder</p>
+      </div>
+      <div class="text-center">
+        <img class="mx-auto h-24 w-24 rounded-full" src="{% static 'img/team/member2.jpg' %}" alt="Team Member 2">
+        <h3 class="mt-4 text-xl font-semibold text-gray-900">John Smith</h3>
+        <p class="mt-2 text-gray-600">Chief Technology Officer</p>
+      </div>
+      <div class="text-center">
+        <img class="mx-auto h-24 w-24 rounded-full" src="{% static 'img/team/member3.jpg' %}" alt="Team Member 3">
+        <h3 class="mt-4 text-xl font-semibold text-gray-900">Emily Johnson</h3>
+        <p class="mt-2 text-gray-600">Head of Engineering</p>
+      </div>
+      <!-- Add more team members as needed -->
+    </div>
+  </div>
+</section>
+<!-- End Team Section -->
+<!-- Call to Action Section -->
+<section class="bg-gray-50 py-16 sm:py-24 lg:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        Ready to Get Started?
+      </h2>
+      <p class="mt-4 text-lg leading-8 text-gray-600">
+        Contact us today to learn more about our solutions and how we can help your business thrive.
+      </p>
+      <div class="mt-8">
+        <a href="#" class="inline-block rounded-md bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </div>
+</section>  
+<!-- End Call to Action Section -->
+<!--End About Content-->
+
+  <!-- Footer -->
+     <footer>
+
+        {% include 'components/footer.html' %}
+
+    </footer>

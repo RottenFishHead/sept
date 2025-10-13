@@ -27,11 +27,14 @@
     --color-softblue: #d4dfed;
 }
 @layer base {
+  h1 {
+    @apply text-primary font-extrabold text-center text-4xl md:text-5xl mb-4;
+  }
   h2 {
     @apply text-cyan-700 font-bold text-center text-2xl mb-2;
   }
   h3 {
-    @apply text-gray-700 italic text-center text-lg mb-4;
+    @apply text-accent italic text-center text-lg mb-4;
   }
   p {
     @apply text-gray-500;

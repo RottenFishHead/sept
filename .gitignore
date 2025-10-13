@@ -25,15 +25,9 @@ db.sqlite3
 *.sqlite3
 local_settings.py
 # user uploaded files
+# (media should not be committed; keep local uploads out of git)
 /media/
-/media/*
 !media/.gitkeep
-
-# staticfiles (collected static output)
-# ignore everything under staticfiles by default but allow vendor assets to be committed
-/staticfiles/*
-!staticfiles/vendor/
-!staticfiles/vendor/**
 
 # Tailwind / frontend build outputs
 node_modules/
@@ -47,13 +41,26 @@ yarn-error.log*
 .tailwind-cache/
 .tailwindcache/
 
-theme/static/css/dist/*
 # Built CSS / dist folders (common targets)
 # ignore the dist folder contents by default but keep committed build CSS if desired
 theme/static/css/dist/*
 !theme/static/css/dist/styles.css
 static/src/.tmp/
 staticfiles/src/.tmp/
+
+# Ignore the app's static files (images, icons, builds)
+# large trees (static and collected staticfiles) are ignored to avoid thousands
+# of assets being added unintentionally. If you need to keep a small set of
+# vendor files, prefer explicit whitelists (see example below).
+/static/
+/staticfiles/
+
+# Example: whitelist only specific vendor asset types (uncomment and adapt)
+# !staticfiles/vendor/**/*.min.css
+# !staticfiles/vendor/**/*.min.js
+# !staticfiles/vendor/**/*.woff2
+# !staticfiles/vendor/**/*.woff
+# !staticfiles/vendor/**/*.svg
 
 # Editor and IDE
 .vscode/
@@ -104,3 +111,5 @@ secrets.json
 # .docker/
 # docker-compose.override.yml
 .backup-*
+
+

@@ -5,6 +5,7 @@ from .models import Product, Category
 class ProductAdmin(admin.ModelAdmin):
     list_display = ("name", "category", "is_active", "created_at")
     list_filter = ("is_active", "category", "created_at")
+    list_select_related = ("category",)
     search_fields = ("name", "short_description", "description", "seo_title", "seo_description", "seo_keywords")
     prepopulated_fields = {"slug": ("name",)}
     fieldsets = (
@@ -14,6 +15,14 @@ class ProductAdmin(admin.ModelAdmin):
         ("Timestamps", {"fields": ("created_at",), "classes": ("collapse",)}),
     )
     readonly_fields = ("created_at",)
+    search_help_text = "Search by name, short description, or SEO fields."
+    list_per_page = 50
+    preserve_filters = True
+    save_on_top = True
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        return qs.select_related('category')
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):

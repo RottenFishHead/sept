@@ -32,3 +32,9 @@ def site_search(request):
         }
 
     return render(request, "core/search_results.html", {"q": q, "results": results})
+
+def about(request):
+    return render(request, "core/about.html")
+
+def contact(request):
+    return render(request, "core/contact.html")

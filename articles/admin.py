@@ -17,6 +17,10 @@ class ArticleAdmin(admin.ModelAdmin):
         ("Timestamps", {"fields": ("created_at", "updated_at"), "classes": ("collapse",)}),
     )
     readonly_fields = ("created_at", "updated_at")
+    search_help_text = "Search by title, excerpt, body, or SEO fields."
+    list_per_page = 50
+    preserve_filters = True
+    save_on_top = True
 
 @admin.register(ArticleImage)
 class ArticleImageAdmin(admin.ModelAdmin):

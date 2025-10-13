@@ -2,6 +2,11 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
+
+admin.site.site_header = "Raveon Admin"
+admin.site.site_title = "Raveon Admin"
+admin.site.index_title = "Raveon Operations Console"
 
 urlpatterns = [
     path("admin/", admin.site.urls),

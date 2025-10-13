@@ -1,7 +1,406 @@
-{% extends "components/base.html" %}
 {% load static %}
+{% load tailwind_tags %}
 
-{% block content %} 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Raveon Technologies</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link rel="stylesheet" href="{% static 'vendor/fontawesome/css/all.min.css' %}">
+
+    {% block meta_og %}
+      {% static 'img/og-default.webp' as og_default_path %}
+      {# Build absolute URL from scheme + host + static path #}
+      {% with absolute_default_og=request.scheme|add:"://"|add:request.get_host|add:og_default_path %}
+        <meta property="og:title" content="{{ page_title|default:'Raveon Technologies' }}">
+        <meta property="og:description" content="{{ meta_description|default:'Reliable data communications.' }}">
+        <meta property="og:type" content="{{ og_type|default:'website' }}">
+        <meta property="og:url" content="{{ request.build_absolute_uri }}">
+        <meta property="og:image" content="{{ og_image_url|default:absolute_default_og }}">
+        <meta property="og:image:alt" content="{{ og_image_alt|default:'Raveon image' }}">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image" content="{{ og_image_url|default:absolute_default_og }}">
+      {% endwith %}
+  {% endblock %}
+
+</head>
+{% tailwind_css %}
+
+<body class="bg-gray-50 text-black font-sans leading-normal tracking-normal">
+    <div class="relative isolate flex items-center gap-x-6 overflow-hidden bg-gray-50 px-6 py-2.5 sm:px-3.5 sm:before:flex-1 dark:bg-gray-800/50 dark:after:pointer-events-none dark:after:absolute dark:after:inset-x-0 dark:after:bottom-0 dark:after:h-px dark:after:bg-white/10">
+          <!-- Light mode logo -->
+          <img src="{% static 'img/Raveon-Data-Radio-Modems-logo.png' %}"
+               alt="Raveon Technologies"
+               class="h-10 w-auto dark:hidden" />
+          <!-- Dark mode logo -->
+          <img src="{% static 'img/Raveon-Data-Radio-Modems-logo.png' %}"
+               alt="Raveon Technologies"
+               class="hidden h-10 w-auto dark:block" />
+  
+      <div aria-hidden="true" class="absolute top-1/2 left-[max(-7rem,calc(50%-52rem))] -z-10 -translate-y-1/2 transform-gpu blur-2xl">
+    <div style="clip-path: polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)" class="aspect-577/310 w-144.25 bg-linear-to-r from-primary to-blue-950 opacity-30 dark:opacity-40"></div>
+  </div>
+  <div aria-hidden="true" class="absolute top-1/2 left-[max(45rem,calc(50%+8rem))] -z-10 -translate-y-1/2 transform-gpu blur-2xl">
+    <div style="clip-path: polygon(74.8% 41.9%, 97.2% 73.2%, 100% 34.9%, 92.5% 0.4%, 87.5% 0%, 75% 28.6%, 58.5% 54.6%, 50.1% 56.8%, 46.9% 44%, 48.3% 17.4%, 24.7% 53.9%, 0% 27.9%, 11.9% 74.2%, 24.9% 54.1%, 68.6% 100%, 74.8% 41.9%)" class="aspect-577/310 w-144.25 bg-linear-to-r from-primary to-blue-950 opacity-30 dark:opacity-40"></div>
+  </div>
+  <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
+    <p class="text-sm/6 text-gray-900 dark:text-gray-100">
+      <strong class="font-semibold">Custom Industry Solutions</strong><svg viewBox="0 0 2 2" aria-hidden="true" class="mx-2 inline size-0.5 fill-current"><circle r="1" cx="1" cy="1" /></svg>Let our team help you build the perfect solution for your needs.
+    </p>
+    <a href="#" class="flex-none rounded-full bg-gray-900 px-3.5 py-1 text-sm font-semibold text-white shadow-xs hover:bg-gray-700 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 dark:bg-white/10 dark:inset-ring-white/20 dark:hover:bg-white/15 dark:focus-visible:outline-white">Find Out More<span aria-hidden="true">&rarr;</span></a>
+  </div>
+  <div class="flex flex-1 justify-end">
+    <button type="button" class="-m-3 p-3 focus-visible:-outline-offset-4">
+      <span class="sr-only">Dismiss</span>
+      <svg viewBox="0 0 20 20" fill="currentColor" data-slot="icon" aria-hidden="true" class="size-5 text-gray-900 dark:text-gray-100">
+        <path d="M6.28 5.22a.75.75 0 0 0-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 1 0 1.06 1.06L10 11.06l3.72 3.72a.75.75 0 1 0 1.06-1.06L11.06 10l3.72-3.72a.75.75 0 0 0-1.06-1.06L10 8.94 6.28 5.22Z" />
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- Navbar -->
+<nav class="sticky top-0 z-50 bg-primary dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 items-center justify-between">
+       <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="/" class="text-lg font-bold text-white dark:text-white mr-4">Raveon Technologies Inc.</a>
+      </div>
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="/" class="text-white dark:text-white">Home</a>
+        
+        <!-- Services flyout -->
+        <div class="relative">
+          <button popovertarget="desktop-menu-services"
+            class="inline-flex items-center gap-x-1 text-sm font-semibold text-white dark:text-white">
+            <span>Services</span>
+            <svg viewBox="0 0 20 20" fill="currentColor" class="size-5">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 
+                   11.94l3.72-3.72a.75.75 0 1 1 1.06 
+                   1.06l-4.25 4.25a.75.75 0 0 
+                   1-1.06 0L5.22 9.28a.75.75 0 
+                   1 1 0-1.06Z" />
+            </svg>
+          </button>
+
+ <!-- Services popover -->
+<el-popover id="desktop-menu-services" anchor="bottom" popover
+  class="w-screen max-w-max overflow-visible bg-transparent px-4 transition 
+         data-closed:translate-y-1 data-closed:opacity-0 
+         data-enter:duration-200 data-leave:duration-150">
+
+  <div class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm shadow-lg outline-1 outline-gray-900/5 lg:max-w-3xl dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
+
+    <!-- 🌟 Centered All Services section -->
+    <div class="flex justify-center text-left gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-white/5">
+                  <div class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white dark:bg-gray-700/50 dark:group-hover:bg-gray-700">
+                  <img src="{% static 'img/logo-tiny.png' %}" alt="Raveon Technologies" class="h-auto w-auto dark:hidden" />
+                  </div>
+                  <div>
+                  <a href="/services/" class="font-semibold text-gray-900 dark:text-white">
+                    All Raveon Services<span class="absolute inset-0"></span>
+                  </a>
+                    <p class="mt-1 text-gray-600 dark:text-gray-400">Services that empower data communications - Raveon has solutions.</p>
+                  </div>
+                </div>
+
+    <!-- Services grid -->
+    <div class="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
+      
+      <!-- Engineering -->
+      <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-white/5">
+        <div class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white dark:bg-gray-700/50 dark:group-hover:bg-gray-700">
+         <i class="fa-light fa-handshake-angle text-purple-900 text-3xl hover:text-orange-500"></i>
+        </div>
+         <div>
+          <a href="#" class="font-semibold text-gray-900 dark:text-white">Engineering<span class="absolute inset-0"></span></a>
+          <p class="mt-1 text-gray-600 dark:text-gray-400">Your ideas, our engineers.</p>
+        </div>
+      </div>
+
+      <!-- Integrations -->
+      <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-white/5">
+        <div class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white dark:bg-gray-700/50 dark:group-hover:bg-gray-700">
+          <i class="fa-light fa-puzzle-piece text-blue-800 text-3xl hover:text-orange-500"></i>
+        </div>
+        <div>
+          <a href="#" class="font-semibold text-gray-900 dark:text-white">Integrations<span class="absolute inset-0"></span></a>
+          <p class="mt-1 text-gray-600 dark:text-gray-400">Our products integrate seamlessly with your workflow.</p>
+        </div>
+      </div>
+
+      <!-- Engagement -->
+      <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-white/5">
+        <div class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white dark:bg-gray-700/50 dark:group-hover:bg-gray-700">
+          <i class="fa-light fa-people-arrows text-wireless text-3xl hover:text-orange-500"></i>
+        </div>
+        <div>
+          <a href="#" class="font-semibold text-gray-900 dark:text-white">Engagement<span class="absolute inset-0"></span></a>
+          <p class="mt-1 text-gray-600 dark:text-gray-400">We work with you - available when you need us.</p>
+        </div>
+      </div>
+
+      <!-- Extended Warrenties -->
+      <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-white/5">
+        <div class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white dark:bg-gray-700/50 dark:group-hover:bg-gray-700">
+          <i class="fa-light fa-badge-check text-green-900 text-3xl hover:text-orange-500"></i>
+        </div>
+        <div>
+          <a href="#" class="font-semibold text-gray-900 dark:text-white">Compliance<span class="absolute inset-0"></span></a>
+          <p class="mt-1 text-gray-600 dark:text-purple-900">Meeting compliance standards is crucial for your business. Let us help!</p>
+        </div>
+      </div>
+
+      <!-- (other services continue...) -->
+    </div>
+
+    <!-- Optional footer promo -->
+    <div class="bg-gray-50 px-8 py-6 dark:bg-gray-700/50">
+      <div class="flex items-center gap-x-3">
+        <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Extended Warranties</h3>
+        <p class="rounded-full bg-indigo-600/10 px-2.5 py-1.5 text-xs font-semibold text-gray-900 dark:bg-indigo-400/10 dark:text-indigo-400">New</p>
+      </div>
+      <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Discuss Extended Warranties with our team. Raveon is committed to your future.</p>
+    </div>
+
+  </div>
+</el-popover>
+</div>
+
+        <!-- Products flyout -->
+        <div class="relative">
+          <button popovertarget="desktop-menu-products"
+            class="inline-flex items-center gap-x-1 text-sm font-semibold text-white dark:text-white">
+            <span>Products</span>
+            <svg viewBox="0 0 20 20" fill="currentColor" class="size-5">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 
+                   11.94l3.72-3.72a.75.75 0 1 1 1.06 
+                   1.06l-4.25 4.25a.75.75 0 0 
+                   1-1.06 0L5.22 9.28a.75.75 0 
+                   1 1 0-1.06Z" />
+            </svg>
+          </button>
+
+          <!-- Products popover -->
+          <el-popover id="desktop-menu-products" anchor="bottom" popover
+            class="w-screen max-w-max overflow-visible bg-transparent px-4 transition 
+                   data-closed:translate-y-1 data-closed:opacity-0 
+                   data-enter:duration-200 data-leave:duration-150">
+            <div class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm shadow-lg outline-1 outline-gray-900/5 lg:max-w-3xl dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
+               <!-- All Products -->
+                 <div class="flex justify-center text-left gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-white/5">
+                  <div class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white dark:bg-gray-700/50 dark:group-hover:bg-gray-700">
+                  <img src="{% static 'img/logo-tiny.png' %}" alt="Raveon Technologies" class="h-auto w-auto dark:hidden" />
+                  </div>
+                  <div>
+                  <a href="/products/" class="font-semibold text-gray-900 dark:text-white">
+                    All Raveon Products<span class="absolute inset-0"></span>
+                  </a>
+                    <p class="mt-1 text-gray-600 dark:text-gray-400">Data communication solutions for every need.</p>
+                  </div>
+                </div>
+
+              <div class="grid grid-cols-1 gap-x-6 gap-y-1 p-4 lg:grid-cols-2">
+                <!-- Product A -->
+                 <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-white/5">
+                  <div class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white dark:bg-gray-700/50 dark:group-hover:bg-gray-700">
+                    <i class="fa-light fa-microchip text-primary text-3xl hover:text-orange-500"></i>
+                  </div>
+                  <div>
+                  <a href="/products/murs/" class="font-semibold text-gray-900 dark:text-white">
+                    Tech Series Products<span class="absolute inset-0"></span>
+                  </a>
+                    <p class="mt-1 text-gray-600 dark:text-gray-400">Multi-use Service for Data Radios</p>
+                  </div>
+                </div>
+
+                <!-- Product B -->
+                <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-white/5">
+                  <div class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white dark:bg-gray-700/50 dark:group-hover:bg-gray-700">
+                   <i class="fa-light fa-map-location text-green-800 text-3xl hover:text-orange-500"></i>
+                  </div>
+                  <div>
+                    <a href="/products/gps/" class="font-semibold text-gray-900 dark:text-white">GPS<span class="absolute inset-0"></span></a>
+                    <p class="mt-1 text-gray-600 dark:text-gps">GPS Navigation Systems for Data Radio</p>
+                  </div>
+                </div>
+
+                <!-- Product C -->
+                <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-white/5">
+                  <div class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white dark:bg-gray-700/50 dark:group-hover:bg-gray-700">
+                 <i class="fa-light fa-walkie-talkie text-data text-3xl hover:text-orange-500"></i>
+                  </div>
+                  <div>
+                    <a href="/products/data-radio/" class="font-semibold text-gray-900 dark:text-white">Data Radio<span class="absolute inset-0"></span></a>
+                    <p class="mt-1 text-gray-600 dark:text-gray-400">Data Radio Solutions for Reliable Communication</p>
+                  </div>
+                </div>
+
+                <!-- Product D -->
+                <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-white/5">
+                  <div class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white dark:bg-gray-700/50 dark:group-hover:bg-gray-700">
+                    <i class="fa-light fa-wireless text-wireless text-3xl hover:text-orange-500"></i>
+                  </div>
+                  <div>
+                    <a href="/products/wireless-links/" class="font-semibold text-gray-900 dark:text-white">Wireless Links<span class="absolute inset-0"></span></a>
+                    <p class="mt-1 text-gray-600 dark:text-gray-400">Remote terminals, SCADA solutions, IOT, and more...</p>
+                  </div>
+                </div>
+
+                <!-- Product E -->
+                <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-white/5">
+                  <div class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white dark:bg-gray-700/50 dark:group-hover:bg-gray-700">
+                   <i class="fa-light fa-house-laptop text-remote text-3xl hover:text-orange-500"></i>
+                  </div>
+                  <div>
+                    <a href="/products/remote-solutions/" class="font-semibold text-gray-900 dark:text-white">Remote Solutions<span class="absolute inset-0"></span></a>
+                    <p class="mt-1 text-gray-600 dark:text-gray-400">OEM solutions, Waterproof, mobile data terminals, and more...</p>
+                  </div>
+                </div>
+
+                <!-- Product F -->
+                <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-white/5">
+                  <div class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white dark:bg-gray-700/50 dark:group-hover:bg-gray-700">
+                   <i class="fa-light fa-plus text-accessories text-3xl hover:text-orange-500"></i>
+                  </div>
+                  <div>
+                    <a href="#" class="font-semibold text-gray-900 dark:text-white">Accessories<span class="absolute inset-0"></span></a>
+                    <p class="mt-1 text-gray-600 dark:text-gray-400">AC/DC Electronics, Surge protectors...</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Featured promo -->
+              <div class="bg-gray-50 px-8 py-6 dark:bg-gray-700/50">
+                <div class="flex items-center gap-x-3">
+                  <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Featured</h3>
+                  <p class="rounded-full bg-indigo-600/10 px-2.5 py-1.5 text-xs font-semibold text-indigo-600 dark:bg-indigo-400/10 dark:text-indigo-400">Hot</p>
+                </div>
+                <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">TechSeries UHF VHF 900MHz data solutions.</p>
+              </div>
+            </div>
+          </el-popover>
+        </div>
+        <a href="#" class="text-white dark:text-white">Articles</a>
+        <a href="/contact" class="text-white dark:text-white">Contact</a>
+        <a href="/about" class="text-white dark:text-white">About</a>
+         <div class="flex flex-1 items-center justify-end lg:ml-6">
+         <a href="#"
+             class="rounded-md bg-button px-3.5 py-2.5 text-sm font-semibold text-on-button shadow-xs
+                    hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2
+                    focus-visible:outline-indigo-600 dark:bg-amber-700 dark:hover:bg-indigo-400
+                    dark:focus-visible:outline-indigo-500">
+            Get a Quote
+          </a>
+      </div>
+       <div class="hidden lg:ml-4 lg:flex lg:items-center">
+
+        <!-- Phone icon -->
+        <a href="tel:+1-760-444-5995"
+          class="relative shrink-0 rounded-full p-1 text-gray-200 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-300">
+          <span class="absolute -inset-1.5"></span>
+          <span class="sr-only">Call us</span>
+          <svg xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24" fill="currentColor" class="size-6">
+            <path fill-rule="evenodd"
+                  d="M2.25 5.25a3 3 0 013-3h2.1a1.5 1.5 0 011.485 1.304l.43 3.013a1.5 1.5 0 01-.87 1.603l-1.348.56a15.45 15.45 0 007.47 7.47l.56-1.348a1.5 1.5 0 011.603-.87l3.013.43a1.5 1.5 0 011.304 1.485v2.1a3 3 0 01-3 3H18a16.5 16.5 0 01-16.5-16.5v-.75z"
+                  clip-rule="evenodd" />
+          </svg>
+        </a>
+        <p class="text-gray-100">+1-760-444-5995</p>
+
+        <!-- Dark/Light mode toggle -->
+        <button id="theme-toggle"
+          class="ml-3 relative shrink-0 rounded-full p-1 text-gray-200 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-300">
+          <span class="sr-only">Toggle dark mode</span>
+          <!-- Sun (visible in dark mode) -->
+          <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg"
+               class="size-6 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 3.25a.75.75 0 01.75-.75h.5a.75.75 0 01.75.75V5a.75.75 0 01-1.5 0V3.25zM10 15a5 5 0 100-10 5 5 0 000 10zm6.75-5a.75.75 0 00.75-.75v-.5a.75.75 0 00-.75-.75H15a.75.75 0 000 1.5h1.75zM10 16.5a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5a.75.75 0 01.75-.75zM4.25 10a.75.75 0 00-.75.75v.5a.75.75 0 00.75.75H6a.75.75 0 000-1.5H4.25zM5.5 4.06a.75.75 0 011.06 0L7.5 5a.75.75 0 11-1.06 1.06L5.5 5.12a.75.75 0 010-1.06zm8 10.88a.75.75 0 010 1.06l-1 1a.75.75 0 11-1.06-1.06l1-1a.75.75 0 011.06 0z"/>
+          </svg>
+          <!-- Moon (visible in light mode) -->
+          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg"
+               class="size-6 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M17.293 13.293a8 8 0 01-10.586-10.586 8 8 0 1010.586 10.586z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+      <!-- Mobile Hamburger -->
+      <div class="md:hidden">
+        <button id="mobile-menu-toggle"
+          class="inline-flex items-center justify-center rounded-md p-2 text-gray-900 dark:text-white focus:outline-none">
+          <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-2">
+    <a href="/" class="block text-gray-900 dark:text-white">Home</a>
+    <a href="/about" class="block text-gray-900 dark:text-white">About</a>
+
+    <!-- Mobile Services -->
+    <details class="group">
+      <summary class="flex items-center justify-between cursor-pointer text-gray-900 dark:text-white">
+        Services
+        <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </summary>
+      <div class="pl-4 mt-2 space-y-2">
+        <a href="#" class="block text-gray-600 dark:text-gray-400">Analytics</a>
+        <a href="#" class="block text-gray-600 dark:text-gray-400">Integrations</a>
+        <a href="#" class="block text-gray-600 dark:text-gray-400">Engagement</a>
+        <a href="#" class="block text-gray-600 dark:text-gray-400">Automations</a>
+        <a href="#" class="block text-gray-600 dark:text-gray-400">Security</a>
+        <a href="#" class="block text-gray-600 dark:text-gray-400">Reports</a>
+      </div>
+    </details>
+
+    <!-- Mobile Products -->
+    <details class="group">
+      <summary class="flex items-center justify-between cursor-pointer text-gray-900 dark:text-white">
+        Products
+        <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </summary>
+      <div class="pl-4 mt-2 space-y-2">
+        <a href="#" class="block text-gray-600 dark:text-gray-400">Product A</a>
+        <a href="#" class="block text-gray-600 dark:text-gray-400">Product B</a>
+        <a href="#" class="block text-gray-600 dark:text-gray-400">Product C</a>
+        <a href="#" class="block text-gray-600 dark:text-gray-400">Product D</a>
+        <a href="#" class="block text-gray-600 dark:text-gray-400">Product E</a>
+        <a href="#" class="block text-gray-600 dark:text-gray-400">Product F</a>
+      </div>
+    </details>
+
+    <a href="/contact" class="block text-white dark:text-white">Contact</a>
+
+         <a href="#"
+             class="rounded-md bg-amber-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs
+                    hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2
+                    focus-visible:outline-indigo-600 dark:bg-amber-700 dark:hover:bg-indigo-400
+                    dark:focus-visible:outline-indigo-500">
+            Get a Quote
+          </a>
+      </div>
+  </nav>
 
 
 <!-- Hero Section -->
@@ -59,27 +458,27 @@
   <div class="max-w-6xl mx-auto px-6">
     <h2 class="text-3xl font-bold text-center text-[#0A192F] mb-12">Our Solutions</h2>
     <div class="grid md:grid-cols-3 gap-8">
-      <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow hover:shadow-lg text-center">
         <h3 class="text-xl font-semibold text-[#0A192F] mb-3">Data Radio Modems</h3>
         <p class="text-gray-600">Custom solutions as well as established wireless technologies for data transmission.</p>
       </div>
-      <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow hover:shadow-lg text-center">
         <h3 class="text-xl font-semibold text-[#0A192F] mb-3">OEM Solutions</h3>
         <p class="text-gray-600">Connecting systems seamlessly for actionable insights.</p>
       </div>
-      <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow hover:shadow-lg text-center">
         <h3 class="text-xl font-semibold text-[#0A192F] mb-3">Wireless Telemetry</h3>
         <p class="text-gray-600">Remote management and transmission solutions for critical data.</p>
       </div>
-      <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow hover:shadow-lg text-center">
         <h3 class="text-xl font-semibold text-[#0A192F] mb-3">VHF/UHF Data Radios</h3>
         <p class="text-gray-600">The frequencies you need with free options for in data communication.</p>
       </div>
-      <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow hover:shadow-lg text-center">
         <h3 class="text-xl font-semibold text-[#0A192F] mb-3">GPS Tracking</h3>
         <p class="text-gray-600">Enhanced tracking solutions for real-time location data.</p>
       </div>
-      <div class="bg-white p-8 rounded-lg shadow hover:shadow-lg text-center">
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow hover:shadow-lg text-center">
         <h3 class="text-xl font-semibold text-[#0A192F] mb-3">Custom Engineering</h3>
         <p class="text-gray-600">Custom solutions built to scale with your organization.</p>
       </div>
@@ -90,7 +489,7 @@
 </section>
 
 <!-- About Section -->
-<section class="bg-white py-20">
+<section class="bg-white dark:bg-gray-800 py-20">
   <div class="max-w-6xl mx-auto px-6 text-center">
     <h2 class="text-3xl font-bold text-gray-900 mb-4">Who We Are</h2>
     <p class="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -108,7 +507,7 @@
 
     <!-- Play button -->
     <button class="absolute inset-0 flex items-center justify-center group">
-      <span class="w-20 h-20 bg-white/80 rounded-full flex items-center justify-center shadow-lg group-hover:bg-white transition">
+      <span class="w-20 h-20 bg-white/80 dark:bg-gray-800/80 rounded-full flex items-center justify-center shadow-lg group-hover:bg-white transition">
         <svg class="w-10 h-10 text-gray-800 group-hover:text-indigo-600 transition" fill="currentColor" viewBox="0 0 20 20">
           <path d="M6 4l12 6-12 6V4z"/>
         </svg>
@@ -215,6 +614,94 @@
     </div>
   </div>
 </div>
+<footer class="bg-gradient-to-b from-softwhite to-softblue text-secondary">
+  <div class="mx-auto max-w-screen-2xl px-3 sm:px-4 lg:px-4 py-12 lg:py-16">
+    <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+
+      <!-- Logo + Address -->
+      <div class="flex flex-col items-start gap-4">
+        <img src="{% static 'img/Raveon-Data-Radio-Modems-logo.png' %}" alt="Raveon Technologies Inc." class="h-24 w-auto dark:hidden" />
+        <img src="{% static 'img/Raveon-Data-Radio-Modems-logo.png' %}" alt="Raveon Technologies Inc." class="hidden h-24 w-auto dark:block" />
+
+        <address class="not-italic text-sm space-y-1">
+          <div class="font-semibold">Raveon Technologies Inc.</div>
+          <div>Oceanside, CA 920</div>
+          <div class="flex items-center gap-2">
+            <!-- Phone icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-4 h-4">
+              <path fill-rule="evenodd" d="M2.25 5.25a3 3 0 013-3h2.1c.7 0 1.29.52 1.38 1.21l.43 3.01c.07.48-.21.94-.65 1.12l-1.35.56a15.46 15.46 0 007.47 7.47l.56-1.35c.18-.44.64-.72 1.12-.65l3.01.43c.7.09 1.21.68 1.21 1.38v2.1a3 3 0 01-3 3H18A16.5 16.5 0 011.5 8.25v-3Z" clip-rule="evenodd"/>
+            </svg>
+            <a href="tel:+1760444" class="hover:underline">(+1) 760-444-5995</a>
+          </div>
+          <div class="flex items-center gap-2">
+            <!-- Email icon -->
+            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" class="w-4 h-4">
+              <path d="M1.5 5.25A2.25 2.25 0 013.75 3h16.5a2.25 2.25 0 012.25 2.25v13.5A2.25 2.25 0 0120.25 21H3.75A2.25 2.25 0 011.5 18.75V5.25zm2.25-.75a.75.75 0 00-.75.75v.27l9 5.4 9-5.4v-.27a.75.75 0 00-.75-.75H3.75z"/>
+            </svg>
+            <a href="mailto:info@raveon.com" class="hover:underline">info@raveon.com</a>
+          </div>
+        </address>
+      </div>
+
+      <!-- Links -->
+      <div class="mt-12 grid grid-cols-2 gap-8 xl:col-span-2 xl:mt-0">
+        <div class="grid grid-cols-2 gap-8 w-full">
+          <div class="text-center">
+            <h3 class="text-sm font-semibold">Products</h3>
+            <ul class="mt-4 space-y-2">
+              <li><a href="#" class="text-sm hover:underline">Products</a></li>
+              <li><a href="#" class="text-sm hover:underline">Services</a></li>
+              <li><a href="#" class="text-sm hover:underline">Articles</a></li>
+              <li><a href="#" class="text-sm hover:underline">Commerce</a></li>
+              <li><a href="#" class="text-sm hover:underline">Insights</a></li>
+            </ul>
+          </div>
+          <div class="text-center">
+            <h3 class="text-sm font-semibold">Services</h3>
+            <ul class="mt-4 space-y-2">
+              <li><a href="#" class="text-sm hover:underline">Submit ticket</a></li>
+              <li><a href="#" class="text-sm hover:underline">Documentation</a></li>
+              <li><a href="#" class="text-sm hover:underline">Guides</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-8 w-full">
+          <div class="text-center">
+            <h3 class="text-sm font-semibold">Support</h3>
+            <ul class="mt-4 space-y-2">
+              <li><a href="#" class="text-sm hover:underline">About</a></li>
+              <li><a href="#" class="text-sm hover:underline">Blog</a></li>
+              <li><a href="#" class="text-sm hover:underline">Contact</a></li>
+              <li><a href="#" class="text-sm hover:underline">Press</a></li>
+            </ul>
+          </div>
+          <div class="text-center">
+            <h3 class="text-sm font-semibold">Legal</h3>
+            <ul class="mt-4 space-y-2">
+              <li><a href="#" class="text-sm hover:underline">Terms of service</a></li>
+              <li><a href="#" class="text-sm hover:underline">Privacy policy</a></li>
+              <li><a href="#" class="text-sm hover:underline">License</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-8 border-t border-white/20 pt-6 md:flex md:items-center md:justify-between">
+      <div class="flex gap-x-6 md:order-2">
+        <!-- social icons (Facebook, Instagram, etc.) -->
+        <a href="#" class="hover:text-gray-200">Facebook</a>
+        <a href="#" class="hover:text-gray-200">Instagram</a>
+        <a href="#" class="hover:text-gray-200">X</a>
+        <a href="#" class="hover:text-gray-200">YouTube</a>
+      </div>
+      <p class="mt-6 text-sm text-amber-100 md:order-1 md:mt-0">
+  &copy; {% now "Y" %} Raveon Technologies Inc. All rights reserved.
+</p>
+    </div>
+  </div>
+</footer>
 
 
 <!-- Parallax Script -->
@@ -230,4 +717,11 @@
   });
 </script>
 
-{% endblock content %}
+<!-- Mobile Toggle Script -->
+<script>
+  const toggle = document.getElementById("mobile-menu-toggle");
+  const menu = document.getElementById("mobile-menu");
+  toggle.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+  });
+</script>

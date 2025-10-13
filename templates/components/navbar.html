@@ -34,19 +34,18 @@
          data-closed:translate-y-1 data-closed:opacity-0 
          data-enter:duration-200 data-leave:duration-150">
 
-  <div class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm shadow-lg outline-1 outline-gray-900/5 lg:max-w-3xl dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
-
+<div class="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-white text-sm shadow-lg outline-1 outline-gray-900/5 lg:max-w-3xl dark:bg-gray-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
     <!-- 🌟 Centered All Services section -->
-    <div class="flex flex-col items-center text-center p-6 border-b border-gray-100 dark:border-gray-700">
-      <div class="flex items-center justify-center w-12 h-12 rounded-full bg-gray-50 dark:bg-gray-700/50 mb-3">
-        <img src="{% static 'img/logo-tiny.png' %}" alt="Raveon Technologies" class="h-8 w-14" />
+    <div class="flex justify-center text-left gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-white/5">
+      <div class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white dark:bg-gray-700/50 dark:group-hover:bg-gray-700">
+        <img src="{% static 'img/logo-tiny.png' %}" alt="Raveon Technologies" class="h-auto w-auto dark:hidden" />
       </div>
-      <a href="/services/" class="font-semibold text-gray-900 dark:text-white text-base">
-        All Raveon Services
-      </a>
-      <p class="mt-1 text-gray-600 dark:text-gray-400 text-sm">
-        Find out how Raveon can help your business.
-      </p>
+        <div>
+          <a href="/services/" class="font-semibold text-gray-900 dark:text-white">
+              All Raveon Services<span class="absolute inset-0"></span>
+          </a>
+          <p class="mt-1 text-gray-600 dark:text-gray-400">Services that empower data communications - Raveon has solutions.</p>
+        </div>
     </div>
 
     <!-- Services grid -->
@@ -55,7 +54,7 @@
       <!-- Engineering -->
       <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-white/5">
         <div class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white dark:bg-gray-700/50 dark:group-hover:bg-gray-700">
-         <i class="fa-light fa-handshake-angle text-green-800 text-3xl hover:text-orange-500"></i>
+         <i class="fa-light fa-handshake-angle text-purple-900 text-3xl hover:text-orange-500"></i>
         </div>
          <div>
           <a href="#" class="font-semibold text-gray-900 dark:text-white">Engineering<span class="absolute inset-0"></span></a>
@@ -85,16 +84,27 @@
         </div>
       </div>
 
+      <!-- Extended Warrenties -->
+      <div class="group relative flex gap-x-6 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-white/5">
+        <div class="mt-1 flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white dark:bg-gray-700/50 dark:group-hover:bg-gray-700">
+          <i class="fa-light fa-badge-check text-green-900 text-3xl hover:text-orange-500"></i>
+        </div>
+        <div>
+          <a href="#" class="font-semibold text-gray-900 dark:text-white">Compliance<span class="absolute inset-0"></span></a>
+          <p class="mt-1 text-gray-600 dark:text-purple-900">Meeting compliance standards is crucial for your business. Let us help!</p>
+        </div>
+      </div>
+
       <!-- (other services continue...) -->
     </div>
 
     <!-- Optional footer promo -->
     <div class="bg-gray-50 px-8 py-6 dark:bg-gray-700/50">
       <div class="flex items-center gap-x-3">
-        <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Enterprise</h3>
-        <p class="rounded-full bg-indigo-600/10 px-2.5 py-1.5 text-xs font-semibold text-indigo-600 dark:bg-indigo-400/10 dark:text-indigo-400">New</p>
+        <h3 class="text-sm font-semibold text-gray-900 dark:text-white">Extended Warranties</h3>
+        <p class="rounded-full bg-indigo-600/10 px-2.5 py-1.5 text-xs font-semibold text-gray-900 dark:bg-indigo-400/10 dark:text-indigo-400">New</p>
       </div>
-      <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Discuss Enterprise solutions with our team. Our engineers and manufacturing can take you where you need to go!</p>
+      <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">Discuss Extended Warranties with our team. Raveon is committed to your future.</p>
     </div>
 
   </div>
