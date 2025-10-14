@@ -6,7 +6,8 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "website.settings")
+    # Use the package-level settings so website/__init__.py can choose base/dev/prod
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "website")
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
