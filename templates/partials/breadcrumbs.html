@@ -1,0 +1,24 @@
+{% if crumbs %}
+  <nav class="flex items-center text-sm text-gray-600 dark:text-gray-300 mb-4" aria-label="Breadcrumb">
+    <ol class="inline-flex items-center space-x-1 md:space-x-2">
+      <li>
+        <a href="/" class="inline-flex items-center hover:text-primary">
+          <svg class="w-4 h-4 mr-1 text-gray-400" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V21a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/></svg>
+          Home
+        </a>
+      </li>
+      {% for crumb in crumbs %}
+        <li class="flex items-center">
+          <svg class="w-4 h-4 mx-2 text-gray-400" fill="none" stroke="currentColor" stroke-width="2"
+               viewBox="0 0 24 24"><path d="M9 5l7 7-7 7" /></svg>
+          {% if not forloop.last %}
+            <a href="{{ crumb.url }}" class="hover:text-primary">{{ crumb.name|title }}</a>
+          {% else %}
+            <span class="text-gray-400 dark:text-gray-500">{{ crumb.name|title }}</span>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ol>
+  </nav>
+{% endif %}

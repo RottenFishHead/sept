@@ -1,5 +1,6 @@
 {% load static tailwind_tags %}
 {% load static %}
+{% load breadcrumbs %}
 
 <!DOCTYPE html>
 <html lang="en" x-data="{ mobileOpen:false }">
@@ -89,7 +90,21 @@
   {% endif %}
 
   <main class="min-h-[60vh]">
-    {% block content %}{% endblock %}
+    <nav aria-label="Breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+  <ol>
+    {% for crumb in crumbs %}
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="{{ crumb.url }}" itemprop="item">
+          <span itemprop="name">{{ crumb.name }}</span>
+        </a>
+        <meta itemprop="position" content="{{ forloop.counter }}" />
+      </li>
+    {% endfor %}
+  </ol>
+</nav>
+    {% block content %}
+    
+    {% endblock %}
   </main>
 
   <footer>
