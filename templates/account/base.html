@@ -1,0 +1,37 @@
+{% load static %}
+{% load tailwind_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% block title %}Raveon Technologies{% endblock %}</title>
+
+  {% block meta_og %}{% endblock %}
+
+  {% tailwind_css %}
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-gray-50 text-black font-sans leading-normal tracking-normal dark:bg-gray-900 dark:text-gray-100">
+
+  <!-- Simple site header (use your existing navbar markup if you prefer) -->
+  <header class="bg-primary dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
+      {% include 'components/navbar.html' %}
+  </header>
+
+  <!-- Page content -->
+  <main class="min-h-[60vh]">
+    {% block content %}
+    account/base.html
+    {% endblock %}
+  </main>
+
+  <!-- Simple site footer -->
+  <footer class="bg-gradient-to-b from-softwhite to-softblue text-secondary">
+    {% include 'components/footer.html' %}
+  </footer>
+
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

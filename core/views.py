@@ -9,7 +9,7 @@ def index(request):
     context = {
         "categories": categories,
     }
-    return render(request, "core/index.html", context)
+    return render(request, "account/index.html", context)
 
 
 def site_search(request):
@@ -36,10 +36,10 @@ def site_search(request):
             "articles": article_results,
         }
 
-    return render(request, "core/search_results.html", {"q": q, "results": results})
+    return render(request, "account/search_results.html", {"q": q, "results": results})
 
 def about(request):
-    return render(request, "core/about.html")
+    return render(request, "account/about.html")
 
 def contact(request):
-    return render(request, "core/contact.html")
+    return render(request, "account/contact.html")

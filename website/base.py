@@ -250,12 +250,43 @@ STORAGES = {
 # ---------------- All Auth Settings ----------
 SITE_ID = 1
 
+# Authentication backends
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 # Allauth config: email-first login, username hidden
-ACCOUNT_AUTHENTICATION_METHOD = "username_email"
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_LOGIN_METHODS = ["email", "username"]
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']
 ACCOUNT_EMAIL_VERIFICATION = "optional"   # change to "mandatory" in prod
 ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
 ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_LOGOUT_ON_GET = True  # Allow logout via GET request
+
+# Social account settings
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_LOGIN_ON_GET = True
+SOCIALACCOUNT_AUTO_SIGNUP = True
+
+# Optional: Add social account providers configuration
+# You'll need to add these in Django admin under Social Applications
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    },
+    'github': {
+        'SCOPE': [
+            'user:email',
+        ],
+    }
+}
+
+# Remove the deprecated setting and use ACCOUNT_SIGNUP_FIELDS instead
+# ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True  # This is now deprecated
