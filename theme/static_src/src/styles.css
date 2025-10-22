@@ -3,21 +3,22 @@
 @source "../../../**/*.{html,py,js}";
 
 @theme {
-    --color-primary: #033C6D;
-    --color-secondary: #045397;
-    --color-accent: #056bc2;
+    --color-primary: #011936;
+    --color-secondary: #82A3A1;
+    --color-accent: #465362;
     --color-contrast: #3c6d03;
     --color-gold: #F2B036;
-    --color-background: #033C6D;
+    --color-background: #011936;
     --color-error: #e53e3e;
-    --color-button: #e87e27;
+    --color-button: #9FC490;
     --color-tech: #2563EB;
-    --color-gps: #2DD4BF;
-    --color-data: #7127e8;
-    --color-remote: #374151;
-    --color-wireless: #FBBF24;
-    --color-accessories:#38BDF8;
-    --color-on-primary: #ffffff;
+    --color-raveon: #5d8eb9;
+    --color-gps: #183A37;
+    --color-data: #EFD6AC; 
+    --color-remote: #C44900;
+    --color-wireless: #432534;
+    --color-accessories:#C0DFA1;
+    --color-on-primary: #7C9EB2;
     --color-on-secondary: #ffffff;
     --color-on-gold: #000000;
     --color-on-background: #ffffff;
@@ -43,3 +44,6 @@
     @apply text-amber-700 dark:text-indigo-400;
   }
 }
+/* Hide scrollbar for Chrome, Safari, Edge */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

@@ -453,6 +453,158 @@
     </div>
   </form>
 
+  <!-- Carousel Section -->
+<!-- Category Carousel Section -->
+<section class="bg-gradient-to-r from-primary via-blue-300 to-primary dark:bg-gray-800 text-white py-6 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-xl font-bold text-center text-white mb-4">
+      Product Categories
+    </h2>
+
+    <div class="relative">
+      <!-- Carousel container -->
+      {% if categories.count > 5 %}
+      <div id="category-carousel" class="flex gap-8 animate-scroll">
+        {% for category in categories %}
+        <a href="{% url 'products:category_detail' category.pk %}" 
+           class="group flex flex-col items-center min-h-[100px] flex-shrink-0 w-24">
+          
+          <!-- Icon bubble -->
+          {% if category.icon %}
+          <div class="flex-shrink-0 w-12 h-12 rounded-full border-2 border-white/30 bg-white/10 group-hover:border-amber-300 group-hover:scale-105 transition-all duration-300"
+               style="background-image: url('{{ category.icon.url }}'); background-size: 24px 24px; background-repeat: no-repeat; background-position: center; filter: brightness(0) invert(1);">
+          </div>
+          {% else %}
+          <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full border-2 border-white/30 bg-white/10 group-hover:border-amber-300 group-hover:scale-105 transition-all duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white group-hover:text-amber-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6"/>
+            </svg>
+          </div>
+          {% endif %}
+
+          <!-- Text content -->
+          <div class="flex flex-col items-center mt-2">
+            <!-- Label -->
+            <span class="text-xs font-semibold text-gray-100 group-hover:text-amber-300 transition-colors text-center">
+              {{ category.name }}
+            </span>
+            
+            <!-- Features description -->
+            {% if category.features %}
+            <p class="mt-1 text-xs text-gray-300 text-center line-clamp-2 w-20">
+              {{ category.features|striptags|truncatewords:4 }}
+            </p>
+            {% endif %}
+          </div>
+
+        </a>
+        {% empty %}
+        <p class="text-gray-300 text-sm text-center w-full">No categories found.</p>
+        {% endfor %}
+        
+        <!-- Duplicate items for seamless loop (only if many categories) -->
+        {% for category in categories %}
+        <a href="{% url 'products:category_detail' category.pk %}" 
+           class="group flex flex-col items-center min-h-[100px] flex-shrink-0 w-24">
+          
+          <!-- Icon bubble -->
+          {% if category.icon %}
+          <div class="flex-shrink-0 w-12 h-12 rounded-full border-2 border-white/30 bg-white/10 group-hover:border-amber-300 group-hover:scale-105 transition-all duration-300"
+               style="background-image: url('{{ category.icon.url }}'); background-size: 24px 24px; background-repeat: no-repeat; background-position: center; filter: brightness(0) invert(1);">
+          </div>
+          {% else %}
+          <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full border-2 border-white/30 bg-white/10 group-hover:border-amber-300 group-hover:scale-105 transition-all duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white group-hover:text-amber-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6"/>
+            </svg>
+          </div>
+          {% endif %}
+
+          <!-- Text content -->
+          <div class="flex flex-col items-center mt-2">
+            <!-- Label -->
+            <span class="text-xs font-semibold text-gray-100 group-hover:text-amber-300 transition-colors text-center">
+              {{ category.name }}
+            </span>
+            
+            <!-- Features description -->
+            {% if category.features %}
+            <p class="mt-1 text-xs text-gray-300 text-center line-clamp-2 w-20">
+              {{ category.features|striptags|truncatewords:4 }}
+            </p>
+            {% endif %}
+          </div>
+
+        </a>
+        {% endfor %}
+      </div>
+      {% else %}
+      <!-- Static display for few categories -->
+      <div class="flex gap-8 justify-center">
+        {% for category in categories %}
+        <a href="{% url 'products:category_detail' category.pk %}" 
+           class="group flex flex-col items-center min-h-[100px] flex-shrink-0 w-24">
+          
+          <!-- Icon bubble -->
+          {% if category.icon %}
+          <div class="flex-shrink-0 w-12 h-12 rounded-full border-2 border-white/30 bg-white/10 group-hover:border-amber-300 group-hover:scale-105 transition-all duration-300"
+               style="background-image: url('{{ category.icon.url }}'); background-size: 24px 24px; background-repeat: no-repeat; background-position: center; filter: brightness(0) invert(1);">
+          </div>
+          {% else %}
+          <div class="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-full border-2 border-white/30 bg-white/10 group-hover:border-amber-300 group-hover:scale-105 transition-all duration-300">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white group-hover:text-amber-300 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v12m6-6H6"/>
+            </svg>
+          </div>
+          {% endif %}
+
+          <!-- Text content -->
+          <div class="flex flex-col items-center mt-2">
+            <!-- Label -->
+            <span class="text-xs font-semibold text-gray-100 group-hover:text-amber-300 transition-colors text-center">
+              {{ category.name }}
+            </span>
+            
+            <!-- Features description -->
+            {% if category.features %}
+            <p class="mt-1 text-xs text-gray-300 text-center line-clamp-2 w-20">
+              {{ category.features|striptags|truncatewords:4 }}
+            </p>
+            {% endif %}
+          </div>
+
+        </a>
+        {% empty %}
+        <p class="text-gray-300 text-sm text-center w-full">No categories found.</p>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+<style>
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+</style>
+
+
+
+
   <!-- Services Grid -->
 <section class="bg-[#F5F5F5] py-20">
   <div class="max-w-6xl mx-auto px-6">
@@ -529,7 +681,7 @@
 <!-- Call-to-Action Footer -->
 <div class="relative bg-secondary dark:bg-gray-900">
   <div class="lg:absolute lg:inset-0 lg:left-1/2">
-    <img src="{% static 'img/engineer-young.jpg' %}" 
+    <img src="{% static 'img/services/engineer-young.jpg' %}" 
        alt="Background" 
        class="absolute inset-0 w-full h-full object-cover" id="parallax-bg" />
   <!-- Dark Overlay -->

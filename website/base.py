@@ -1,21 +1,24 @@
 from pathlib import Path
 import os
+try:
+    from dotenv import load_dotenv
+    dotenv_loaded = load_dotenv(Path(__file__).resolve().parent.parent / '.env')
+except Exception:
+    dotenv_loaded = False
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+DEBUG = os.environ.get('DEBUG', 'True').lower() in ('1', 'true', 'yes')
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-u1r@7&qv&-nn56c4d#o5b%%c8w0wy8(bl1idu1kk5bx0@=_*#^"
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
+if not SECRET_KEY:
+    raise RuntimeError(
+        "SECRET_KEY environment variable is required. "
+        "Set SECRET_KEY in the environment or use a secure secrets manager."
+    )
 
 ALLOWED_HOSTS = ["*"]
-
-# Application definition
 
 INSTALLED_APPS = [
     "core.apps.CoreConfig",
@@ -29,12 +32,19 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'django.contrib.humanize',
+    "django.contrib.sites", 
     "tailwind",
     "theme",
     "django_browser_reload",
     "widget_tweaks",
     "django_ckeditor_5",
     "storages",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
+    "allauth.socialaccount.providers.google", 
+    "allauth.socialaccount.providers.github",
+
 
 ]
 
@@ -48,7 +58,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django_browser_reload.middleware.BrowserReloadMiddleware",
-    
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "website.urls"
@@ -70,9 +80,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "website.wsgi.application"
 
-
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+# Password validation
+AUTH_PASSWORD_VALIDATORS = [
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",},
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
+    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
+    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
+]
 
 DATABASES = {
     "default": {
@@ -80,8 +94,6 @@ DATABASES = {
         "NAME": BASE_DIR / "db.sqlite3",
     }
 }
-# Internationalization
-# https://docs.djangoproject.com/en/5.2/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
@@ -233,10 +245,23 @@ STORAGES = {
     },
 }
 
-# Password validation (moved here)
-AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",},
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
-]
+
+# # ---------------- All Auth Settings ----------
+# SITE_ID = 1
+
+
+# # Allauth config: email-first login, username hidden
+# ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+# ACCOUNT_EMAIL_REQUIRED = True
+# ACCOUNT_USERNAME_REQUIRED = False
+# ACCOUNT_EMAIL_VERIFICATION = "optional"   # change to "mandatory" in prod
+# ACCOUNT_UNIQUE_EMAIL = True
+# ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
+# ACCOUNT_SESSION_REMEMBER = True
+
+# LOGIN_REDIRECT_URL = "contacts:me"
+# ACCOUNT_SIGNUP_REDIRECT_URL = "contacts:me"
+# ACCOUNT_LOGOUT_REDIRECT_URL = "account_login"
+
+# # Use custom allauth adapter (recommended to honor ?next)
+# ACCOUNT_ADAPTER = "accounts.adapter.CustomAccountAdapter"

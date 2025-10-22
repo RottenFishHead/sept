@@ -1,10 +1,15 @@
+from multiprocessing import context
 from django.shortcuts import render
-from products.models import Product
+from products.models import Product, Category
 from services.models import Service
 from articles.models import Article  
 
 def index(request):
-    return render(request, "core/index.html")
+    categories = Category.objects.all()    
+    context = {
+        "categories": categories,
+    }
+    return render(request, "core/index.html", context)
 
 
 def site_search(request):

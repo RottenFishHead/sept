@@ -83,8 +83,8 @@ def category_list(request):
         "categories": page_obj.object_list,  # so template loops over "categories"
     })
 
-def category_detail(request, pk):
-    category = get_object_or_404(Category, pk=pk)
+def category_detail(request, slug):
+    category = get_object_or_404(Category, slug=slug)
     products = Product.objects.filter(category=category, is_active=True)
     ctx = {
         "category": category,

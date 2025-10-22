@@ -1,6 +1,37 @@
 {% extends "components/base.html" %}
 {% load static %}
 {% block content %}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "{{ request.build_absolute_uri }}"
+  },
+  "headline": "{{ article.title|escapejs }}",
+  "description": "{{ article.excerpt|default:article.content|striptags|truncatechars:200|escapejs }}",
+  "image": [
+    "{{ article.image.url|default_if_none:'' }}"
+  ],
+  "author": {
+    "@type": "Person",
+    "name": "{{ article.author.get_full_name|default:article.author.username|escapejs }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Raveon Technologies",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.raveon.com/static/img/raveon-logo.svg"
+    }
+  },
+  "datePublished": "{{ article.published|date:'c' }}",
+  "dateModified": "{{ article.updated|date:'c' }}"
+}
+</script>
+
 <div class="mx-auto max-w-4xl px-4 py-10">
   <div class="flex items-center justify-between mb-6">
     <h1 class="text-3xl font-bold">{{ article.title }}</h1>

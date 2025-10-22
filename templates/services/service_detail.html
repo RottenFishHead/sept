@@ -2,6 +2,41 @@
 {% load static %}
 
 {% block content %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "serviceType": "{{ service.name|escapejs }}",
+  "name": "{{ service.name|escapejs }}",
+  "description": "{{ service.description|striptags|escapejs }}",
+  "provider": {
+    "@type": "Organization",
+    "name": "Raveon Technologies",
+    "url": "https://www.raveon.com",
+    "logo": "https://www.raveon.com/static/img/raveon-logo.svg"
+  },
+  {% if service.image %}
+  "image": "{{ service.image.url }}",
+  {% endif %}
+  "areaServed": {
+    "@type": "Place",
+    "name": "Worldwide"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Raveon Service Catalog",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "{{ service.name|escapejs }}"
+        },
+        "url": "{{ request.build_absolute_uri }}"
+    ]
+  }
+}
+</script>
 
 <!-- Hero Section -->
 <section class="relative h-[300px] flex items-center justify-center overflow-hidden">

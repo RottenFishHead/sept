@@ -12,6 +12,37 @@
   {% endif %}
 {% endblock %}
 
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "{{ product.name|escapejs }}",
+  "image": [
+    "{{ product.image.url|default_if_none:'' }}"
+  ],
+  "description": "{{ product.short_description|striptags|escapejs }}",
+  "sku": "{{ product.slug|escapejs }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "Raveon Technologies"
+  },
+  "manufacturer": {
+    "@type": "Organization",
+    "name": "Raveon Technologies",
+    "url": "https://www.raveon.com"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ request.build_absolute_uri }}",
+    "priceCurrency": "USD",
+    "availability": "https://schema.org/InStock"
+  },
+  "url": "{{ request.build_absolute_uri }}"
+}
+</script>
+
+
 {% block content %}
 <style>
 .ckeditor-content a {
@@ -25,6 +56,32 @@
 
 
 <div class="ckeditor-content max-w-6xl mx-auto p-6">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://www.raveon.com/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "{{ product.category.name|escapejs }}",
+      "item": "{{ request.scheme }}://{{ request.get_host }}{% url 'products:category_detail' product.category.id %}"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "{{ product.name|escapejs }}",
+      "item": "{{ request.build_absolute_uri }}"
+    }
+  ]
+}
+</script>
 
   <!-- Product Header -->
   <div class="bg-white shadow-lg rounded-xl overflow-hidden">

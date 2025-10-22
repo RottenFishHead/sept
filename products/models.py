@@ -6,23 +6,42 @@ from django_ckeditor_5.fields import CKEditor5Field
 from PIL import Image
 from django.core.exceptions import ValidationError
 from django_ckeditor_5.fields import CKEditor5Field
-
+from core.validators import validate_svg_or_image
 
 class Category(models.Model):
     name = models.CharField(max_length=120, unique=True)
     features = CKEditor5Field(blank=True, null=True)  # explanation field
-    image = models.ImageField(upload_to="categories/", blank=True, null=True) 
+    image = models.ImageField(upload_to="categories/", blank=True, null=True)
+    slug =models.SlugField(max_length=140, unique=True, blank=True)
+    icon = models.FileField(
+        upload_to="icons/categories/",
+        validators=[validate_svg_or_image],
+        blank=True,
+        null=True,
+    )
     class Meta:
         verbose_name_plural = "categories"
 
     def __str__(self):
         return self.name
+    
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            base = slugify(self.name)[:200]
+            candidate = base
+            i = 1
+            while Category.objects.filter(slug=candidate).exists():
+                i += 1
+                candidate = f"{base}-{i}"
+            self.slug = candidate
+        super().save(*args, **kwargs)
 
 class Product(models.Model):
     name = models.CharField(max_length=180)
     slug = models.SlugField(max_length=220, unique=True, blank=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True)
     image = models.ImageField(upload_to="products/", blank=True, null=True)
+    icon = models.ImageField(upload_to="icons/products/", blank=True, null=True)
     short_description = models.CharField(max_length=280, blank=True)
     description = CKEditor5Field(blank=True)
     section_1 = CKEditor5Field(blank=True)
