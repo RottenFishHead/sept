@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "articles.apps.ArticlesConfig",
     "products.apps.ProductsConfig",
     "services.apps.ServicesConfig",
+    "members.apps.MembersConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -223,7 +224,7 @@ CKEDITOR_5_CONFIGS = {
 
 # Define a constant in settings.py to specify file upload permissions
 CKEDITOR_5_FILE_UPLOAD_PERMISSION = "staff"
-
+LOGIN_REDIRECT_URL = "members:profile"
 
 # Static and media settings (moved here from settings.py)
 STATIC_ROOT = BASE_DIR / "staticfiles"
@@ -246,22 +247,15 @@ STORAGES = {
 }
 
 
-# # ---------------- All Auth Settings ----------
-# SITE_ID = 1
+# ---------------- All Auth Settings ----------
+SITE_ID = 1
 
 
-# # Allauth config: email-first login, username hidden
-# ACCOUNT_AUTHENTICATION_METHOD = "username_email"
-# ACCOUNT_EMAIL_REQUIRED = True
-# ACCOUNT_USERNAME_REQUIRED = False
-# ACCOUNT_EMAIL_VERIFICATION = "optional"   # change to "mandatory" in prod
-# ACCOUNT_UNIQUE_EMAIL = True
-# ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
-# ACCOUNT_SESSION_REMEMBER = True
-
-# LOGIN_REDIRECT_URL = "contacts:me"
-# ACCOUNT_SIGNUP_REDIRECT_URL = "contacts:me"
-# ACCOUNT_LOGOUT_REDIRECT_URL = "account_login"
-
-# # Use custom allauth adapter (recommended to honor ?next)
-# ACCOUNT_ADAPTER = "accounts.adapter.CustomAccountAdapter"
+# Allauth config: email-first login, username hidden
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_VERIFICATION = "optional"   # change to "mandatory" in prod
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = True
+ACCOUNT_SESSION_REMEMBER = True

@@ -15,9 +15,9 @@ urlpatterns = [
     path("articles/", include("articles.urls", namespace="articles")),
     path("products/", include("products.urls", namespace="products")),
     path("services/", include("services.urls", namespace="services")),
-    # path("contacts/", include("contacts.urls", namespace="contacts")),
+    path("members/", include("members.urls", namespace="members")),
     path("__reload__/", include("django_browser_reload.urls")),
-    # path("accounts/", include("allauth.urls")),
+    path("accounts/", include("allauth.urls")),
     path("ckeditor5/", include('django_ckeditor_5.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

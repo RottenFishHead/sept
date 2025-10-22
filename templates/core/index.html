@@ -64,17 +64,18 @@
 </div>
 
 <!-- Navbar -->
-<nav class="sticky top-0 z-50 bg-primary dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+<nav class="sticky top-0 z-50 bg-primary dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 w-full">
+    <div class="w-full px-4 sm:px-6 lg:px-8">
     <div class="flex h-16 items-center justify-between">
-       <!-- Logo -->
+      <!-- Left: Logo -->
       <div class="flex-shrink-0">
         <a href="/" class="text-lg font-bold text-white dark:text-white mr-4">Raveon Technologies Inc.</a>
       </div>
-      <!-- Desktop Menu -->
-      <div class="hidden md:flex items-center space-x-8">
+
+      <!-- Center: Main nav (use flex-1 so this region expands) -->
+      <div class="hidden md:flex items-center space-x-8 flex-1 justify-start md:justify-center">
         <a href="/" class="text-white dark:text-white">Home</a>
-        
+
         <!-- Services flyout -->
         <div class="relative">
           <button popovertarget="desktop-menu-services"
@@ -318,28 +319,39 @@
         <p class="text-gray-100">+1-760-444-5995</p>
 
         <!-- Dark/Light mode toggle -->
-        <button id="theme-toggle"
-          class="ml-3 relative shrink-0 rounded-full p-1 text-gray-200 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-300">
-          <span class="sr-only">Toggle dark mode</span>
-          <!-- Sun (visible in dark mode) -->
-          <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg"
-               class="size-6 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M10 3.25a.75.75 0 01.75-.75h.5a.75.75 0 01.75.75V5a.75.75 0 01-1.5 0V3.25zM10 15a5 5 0 100-10 5 5 0 000 10zm6.75-5a.75.75 0 00.75-.75v-.5a.75.75 0 00-.75-.75H15a.75.75 0 000 1.5h1.75zM10 16.5a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5a.75.75 0 01.75-.75zM4.25 10a.75.75 0 00-.75.75v.5a.75.75 0 00.75.75H6a.75.75 0 000-1.5H4.25zM5.5 4.06a.75.75 0 011.06 0L7.5 5a.75.75 0 11-1.06 1.06L5.5 5.12a.75.75 0 010-1.06zm8 10.88a.75.75 0 010 1.06l-1 1a.75.75 0 11-1.06-1.06l1-1a.75.75 0 011.06 0z"/>
-          </svg>
-          <!-- Moon (visible in light mode) -->
-          <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg"
-               class="size-6 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
-            <path fill-rule="evenodd" clip-rule="evenodd"
-                  d="M17.293 13.293a8 8 0 01-10.586-10.586 8 8 0 1010.586 10.586z"/>
-          </svg>
-        </button>
-      </div>
-    </div>
+         <!-- Theme toggle -->
+          <button id="theme-toggle" class="relative shrink-0 rounded-full p-1 text-gray-200 hover:text-white focus:outline-2 focus:outline-offset-2 focus:outline-indigo-300">
+            <span class="sr-only">Toggle dark mode</span>
+            <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="size-6 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M10 3.25a.75.75 0 01.75-.75h.5a.75.75 0 01.75.75V5a.75.75 0 01-1.5 0V3.25zM10 15a5 5 0 100-10 5 5 0 000 10zm6.75-5a.75.75 0 00.75-.75v-.5a.75.75 0 00-.75-.75H15a.75.75 0 000 1.5h1.75zM10 16.5a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5a.75.75 0 01.75-.75zM4.25 10a.75.75 0 00-.75.75v.5a.75.75 0 00.75.75H6a.75.75 0 000-1.5H4.25zM5.5 4.06a.75.75 0 011.06 0L7.5 5a.75.75 0 11-1.06 1.06L5.5 5.12a.75.75 0 010-1.06zm8 10.88a.75.75 0 010 1.06l-1 1a.75.75 0 11-1.06-1.06l1-1a.75.75 0 011.06 0z"/>
+            </svg>
+            <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="size-6 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M17.293 13.293a8 8 0 01-10.586-10.586 8 8 0 1010.586 10.586z"/>
+            </svg>
+          </button>
 
-      <!-- Mobile Hamburger -->
+          <!-- Auth links -->
+          <ul class="flex flex-row gap-x-4 text-white dark:text-gray-300 ml-3">
+            {% if user.is_authenticated %}
+              <li><a class="nav-link" href="{% url 'members:profile' %}">{{ user.get_full_name|default:user.username }}</a></li>
+              <li>
+                <form method="post" action="{% url 'account_logout' %}" class="d-inline" style="display:inline;">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-link nav-link" style="padding: 0; border: none; background: none;">Logout</button>
+                </form>
+              </li>
+            {% else %}
+              <li><a class="nav-link" href="{% url 'account_login' %}">Login</a></li>
+              <li><a class="nav-link" href="{% url 'account_signup' %}">Register</a></li>
+            {% endif %}
+          </ul>
+      </div>
+      </div>
+
+      <!-- Mobile Hamburger - positioned on the right -->
       <div class="md:hidden">
         <button id="mobile-menu-toggle"
-          class="inline-flex items-center justify-center rounded-md p-2 text-gray-900 dark:text-white focus:outline-none">
+          class="inline-flex items-center justify-center rounded-md p-2 text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-white/20">
           <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
               d="M4 6h16M4 12h16M4 18h16" />
@@ -351,55 +363,56 @@
 
   <!-- Mobile Menu -->
   <div id="mobile-menu" class="hidden md:hidden px-4 pb-4 space-y-2">
-    <a href="/" class="block text-gray-900 dark:text-white">Home</a>
-    <a href="/about" class="block text-gray-900 dark:text-white">About</a>
+    <a href="/" class="block text-white">Home</a>
+    <a href="/about" class="block text-white">About</a>
 
     <!-- Mobile Services -->
     <details class="group">
-      <summary class="flex items-center justify-between cursor-pointer text-gray-900 dark:text-white">
+      <summary class="flex items-center justify-between cursor-pointer text-white">
         Services
         <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
         </svg>
       </summary>
       <div class="pl-4 mt-2 space-y-2">
-        <a href="#" class="block text-gray-600 dark:text-gray-400">Analytics</a>
-        <a href="#" class="block text-gray-600 dark:text-gray-400">Integrations</a>
-        <a href="#" class="block text-gray-600 dark:text-gray-400">Engagement</a>
-        <a href="#" class="block text-gray-600 dark:text-gray-400">Automations</a>
-        <a href="#" class="block text-gray-600 dark:text-gray-400">Security</a>
-        <a href="#" class="block text-gray-600 dark:text-gray-400">Reports</a>
+        <a href="#" class="block text-gray-300">Engineering</a>
+        <a href="#" class="block text-gray-300">Integrations</a>
+        <a href="#" class="block text-gray-300">Engagement</a>
+        <a href="#" class="block text-gray-300">Compliance</a>
+        <a href="#" class="block text-gray-300">Extended Warranties</a>
+      
       </div>
     </details>
 
     <!-- Mobile Products -->
     <details class="group">
-      <summary class="flex items-center justify-between cursor-pointer text-gray-900 dark:text-white">
+      <summary class="flex items-center justify-between cursor-pointer text-white">
         Products
         <svg class="h-4 w-4 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
         </svg>
       </summary>
       <div class="pl-4 mt-2 space-y-2">
-        <a href="#" class="block text-gray-600 dark:text-gray-400">Product A</a>
-        <a href="#" class="block text-gray-600 dark:text-gray-400">Product B</a>
-        <a href="#" class="block text-gray-600 dark:text-gray-400">Product C</a>
-        <a href="#" class="block text-gray-600 dark:text-gray-400">Product D</a>
-        <a href="#" class="block text-gray-600 dark:text-gray-400">Product E</a>
-        <a href="#" class="block text-gray-600 dark:text-gray-400">Product F</a>
+        <a href="#" class="block text-gray-300">Tech Series</a>
+        <a href="#" class="block text-gray-300">Data Radio</a>
+        <a href="#" class="block text-gray-300">GPS</a>
+        <a href="#" class="block text-gray-300">Wireless Links</a>
+        <a href="#" class="block text-gray-300">Remote Solutions</a>
+        <a href="#" class="block text-gray-300">Accessories</a>
       </div>
     </details>
 
-    <a href="/contact" class="block text-white dark:text-white">Contact</a>
+    <a href="/contact" class="block text-white">Contact</a>
 
          <a href="#"
              class="rounded-md bg-amber-700 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs
                     hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2
                     focus-visible:outline-indigo-600 dark:bg-amber-700 dark:hover:bg-indigo-400
-                    dark:focus-visible:outline-indigo-500">
+                    dark:focus-visible:outline-indigo-500 mt-6 block text-center">
             Get a Quote
           </a>
       </div>
+      
   </nav>
 
 
